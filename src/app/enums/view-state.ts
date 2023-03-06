@@ -1,0 +1,12 @@
+export enum ViewState {
+  LOADING,
+  ERROR,
+  SUCCESS,
+  CLOSE,
+  LOAD_ATTEMPT,
+  LOAD_SUCCESS,
+  LOAD_ERROR,
+  SAVE_ATTEMPT,
+  SAVE_SUCCESS,
+  SAVE_ERROR
+}

@@ -1,0 +1,46 @@
+<h2>Producenci
+  &nbsp;
+  <a mat-raised-button routerLink="/producers/add">Dodaj</a>
+</h2>
+
+<mat-progress-bar class="example-margin" color="primary" mode="determinate" [value]="progress">
+</mat-progress-bar>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8 producers-list">
+
+  <ng-container matColumnDef="producerID">
+    <th mat-header-cell *matHeaderCellDef> ID </th>
+    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="producerName">
+    <th mat-header-cell *matHeaderCellDef> Nazwa </th>
+    <td mat-cell *matCellDef="let element">
+      <a [routerLink]="['/producers/view', element.id]" routerLinkActive="router-link-active">
+        {{element.name}} </a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="producerDesc">
+    <th mat-header-cell *matHeaderCellDef> Opis </th>
+    <td mat-cell *matCellDef="let element"> {{element.desc}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="producerEdit">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <a [routerLink]="['/producers/edit', element.id]" routerLinkActive="router-link-active">
+        <mat-icon>edit</mat-icon ></a>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="producerDelete">
+    <th mat-header-cell *matHeaderCellDef> </th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon>delete</mat-icon>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
