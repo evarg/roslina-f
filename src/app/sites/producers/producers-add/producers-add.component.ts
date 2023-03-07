@@ -29,7 +29,7 @@ export class ProducersAddComponent implements OnInit {
 
   back(): void {
     this.viewState = ViewState.CLOSE;
-    this.location.back();
+    this.router.navigate(['/producers']);
   }
   
   onSave() {
