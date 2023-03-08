@@ -8,32 +8,24 @@
     <mat-card-content>
       <mat-form-field appearance="fill">
         <mat-label>Nazwa</mat-label>
-        <input
-          matInput
-          placeholder="Przykładowa nazwa"
-          formControlName="name"
-        />
-        <mat-error *ngIf="producerForm.controls['name'].invalid"
-          >Błąd</mat-error
-        >
+        <input matInput placeholder="Przykładowa nazwa" formControlName="name" />
+        <mat-error *ngIf="producerForm.controls['name'].invalid">Błąd</mat-error>
       </mat-form-field>
 
       <mat-form-field appearance="fill">
         <mat-label>Opis</mat-label>
         <input matInput placeholder="" formControlName="desc" />
-        <mat-error *ngIf="producerForm.controls['desc'].invalid"
-          >Błąd</mat-error
-        >
+        <mat-error *ngIf="producerForm.controls['desc'].invalid">Błąd</mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Kraj</mat-label>
+        <input matInput placeholder="" formControlName="country" />
+        <mat-error *ngIf="producerForm.controls['country'].invalid">Błąd</mat-error>
       </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
-      <button
-        mat-button
-        type="button"
-        class="btn btn-default"
-        (click)="onSave()"
-        [disabled]="producerForm.invalid"
-      >
+      <button mat-button type="button" class="btn btn-default" (click)="onSave()" [disabled]="producerForm.invalid">
         Zapisz
       </button>
       <button mat-button (click)="back()">Wróć</button>

@@ -25,6 +25,13 @@
           >Błąd</mat-error
         >
       </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Kraj</mat-label>
+        <input matInput placeholder="" formControlName="country" />
+        <mat-error *ngIf="producerForm.controls['country'].invalid"
+          >Błąd</mat-error
+        >
+      </mat-form-field>
     </mat-card-content>
     <mat-card-actions>
       <button
@@ -41,6 +48,7 @@
 
     <mat-card-footer align="end">
       {{viewState | viewStateMessage}}
+
       &nbsp;
     </mat-card-footer>
   </mat-card>

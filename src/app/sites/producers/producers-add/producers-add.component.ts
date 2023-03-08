@@ -5,6 +5,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProducersService } from 'src/app/services/producers.service';
 import { ViewState } from 'src/app/enums/view-state';
 
+export enum ProducerAddFormControlName {
+  NAME = 'name',
+  DESC = 'desc',
+  COUNTRY = 'country'
+}
+
 @Component({
   selector: 'app-producers-add',
   templateUrl: './producers-add.component.html',
@@ -22,8 +28,9 @@ export class ProducersAddComponent implements OnInit {
     private fb: FormBuilder
   ) {
     this.producerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(0)]],
-      desc: [''],
+      [ProducerAddFormControlName.NAME]: ['', [Validators.required, Validators.minLength(0)]],
+      [ProducerAddFormControlName.DESC]: [''],
+      [ProducerAddFormControlName.COUNTRY]: ['']
     });
   }
 

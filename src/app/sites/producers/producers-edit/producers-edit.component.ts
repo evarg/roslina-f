@@ -24,6 +24,7 @@ export class ProducersEditComponent implements OnInit {
     this.producerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(0)]],
       desc: [''],
+      country: ['']
     });
     this.producerID = this.route.snapshot.params['id'];
   }
@@ -57,6 +58,7 @@ export class ProducersEditComponent implements OnInit {
         this.producerForm.setValue({
           name: data.name,
           desc: data.desc,
+          country: data.country,
         });
         this.viewState = ViewState.LOAD_SUCCESS;
       },

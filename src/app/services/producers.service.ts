@@ -3,8 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 export interface Producer {
+  id?: number;
   name: string;
   desc: string;
+  country: string;
+  created_at?: string;
+  updated_at?: string;
 }
 
 @Injectable({
@@ -15,8 +19,8 @@ export class ProducersService {
 
   constructor(private http: HttpClient) {}
 
-  list(): Observable<any> {
-    return this.http.get<any>(this.apiURL + 'producers');
+  list(): Observable<Producer[]> {
+    return this.http.get<Producer[]>(this.apiURL + 'producers');
   }
 
   create(data: any): Observable<any> {
