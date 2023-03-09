@@ -1,20 +1,23 @@
 .producers-list {
   width: 100%;
-  //background-color: white;
 }
 
-.mat-column-producerID {
-  width: 10%;
+.mat-column-select {
+  width: 5%;
   text-align: left;
 }
-.mat-column-producerName {
+.mat-column-id {
+  width: 5%;
+  text-align: left;
+}
+.mat-column-name {
   text-align: left;
 }
 
-.mat-column-producerEdit {
+.mat-column-edit {
   width: 5%;
 }
 
-.mat-column-producerDelete {
+.mat-column-delete {
   width: 5%;
 }

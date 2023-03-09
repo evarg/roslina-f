@@ -1,9 +1,11 @@
-import { DataSource } from '@angular/cdk/collections';
+import { DataSource, SelectionModel } from '@angular/cdk/collections';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { Producer, ProducersService } from 'src/app/services/producers.service';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 
 export class ProducersDataSource extends DataSource<Producer> {
   /** Stream of data that is provided to the table. */
@@ -27,20 +29,22 @@ export class ProducersDataSource extends DataSource<Producer> {
   styleUrls: ['./producers-list.component.scss'],
 })
 export class ProducersListComponent implements OnInit {
-  displayedColumns: string[] = [
-    'producerID',
-    'producerName',
-    'producerEdit',
-    'producerDelete',
-  ];
+  displayedColumns: string[] = ['select', 'id', 'name', 'edit', 'delete'];
   dataSource: any = new MatTableDataSource<Producer>([]);
 
-  constructor(private producersService: ProducersService) {}
+  public selection: SelectionModel<Producer>;
+
+  constructor(
+    private producersService: ProducersService,
+    private _liveAnnouncer: LiveAnnouncer
+  ) {
+    this.selection = new SelectionModel<Producer>(true, []);
+  }
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
-  ngAfterViewInit() {
-  }
+  ngAfterViewInit() {}
 
   public ngOnInit(): void {
     this.handleProducersData();
@@ -53,7 +57,8 @@ export class ProducersListComponent implements OnInit {
         //this.dataSource = new ProducersDataSource(data);
         this.dataSource = new MatTableDataSource<Producer>(data);
         this.dataSource.paginator = this.paginator;
-        console.log(this.dataSource.paginator);
+        this.dataSource.sort = this.sort;
+        console.log(this.dataSource.sort);
       },
     });
   }
@@ -64,5 +69,22 @@ export class ProducersListComponent implements OnInit {
 
   public dodaj() {
     console.log(this.dataSource);
+  }
+
+  announceSortChange(sortState: Sort) {
+    console.log(sortState.direction);
+  }
+
+  isAllSelected() {
+    const numSelected = this.selection.selected.length;
+    const numRows = this.dataSource.data.length;
+    return numSelected == numRows;
+  }
+
+  /** Selects all rows if they are not all selected; otherwise clear selection. */
+  toggleAllRows() {
+    this.isAllSelected()
+      ? this.selection.clear()
+      : this.dataSource.data.forEach((row: Producer) => this.selection.select(row));
   }
 }
