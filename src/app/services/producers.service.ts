@@ -23,16 +23,16 @@ export class ProducersService {
     return this.http.get<Producer[]>(this.apiURL + 'producers');
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post(this.apiURL + 'producers', data);
+  create(data: Producer): Observable<Producer> {
+    return this.http.post<Producer>(this.apiURL + 'producers', data);
   }
 
-  modify(id: number, data: any): Observable<any> {
-    return this.http.put(this.apiURL + 'producers/' + id, data);
+  modify(id: number, data: Producer): Observable<Producer> {
+    return this.http.put<Producer>(this.apiURL + 'producers/' + id, data);
   }
 
-  get(id: number): Observable<any> {
-    return this.http.get(this.apiURL + 'producers/' + id);
+  get(id: number): Observable<Producer> {
+    return this.http.get<Producer>(this.apiURL + 'producers/' + id);
   }
 
   delete(id: number): Observable<any> {

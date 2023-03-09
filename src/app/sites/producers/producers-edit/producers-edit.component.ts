@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewState } from 'src/app/enums/view-state';
 import { Producer, ProducersService } from 'src/app/services/producers.service';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-producers-edit',
@@ -19,39 +20,44 @@ export class ProducersEditComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     private producersService: ProducersService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private statusSnackBarService: SnackBarService
   ) {
     this.producerForm = this.fb.group({
       name: ['', [Validators.required, Validators.minLength(0)]],
       desc: [''],
-      country: ['']
+      country: [''],
     });
     this.producerID = this.route.snapshot.params['id'];
   }
 
+  public changeViewState(viewState: ViewState) {
+    this.viewState = viewState;
+    this.statusSnackBarService.show(viewState);
+  }
+
   back(): void {
-    this.viewState = ViewState.CLOSE;
+    this.changeViewState(ViewState.CLOSE);
     this.router.navigate(['/producers']);
   }
 
   onSave() {
-    this.viewState = ViewState.SAVE_ATTEMPT;
+    this.changeViewState(ViewState.SAVE_ATTEMPT);
     this.producersService
       .modify(this.producerID, this.producerForm.value)
       .subscribe({
         next: (data) => {
-          console.info(data);
-          this.viewState = ViewState.SAVE_SUCCESS;
+          this.changeViewState(ViewState.SAVE_SUCCESS);
         },
         error: (err) => {
           console.error(err);
-          this.viewState = ViewState.SAVE_ERROR;
+          this.changeViewState(ViewState.SAVE_ERROR);
         },
       });
   }
 
   ngOnInit(): void {
-    this.viewState = ViewState.LOAD_ATTEMPT;
+    this.changeViewState(ViewState.LOAD_ATTEMPT);
     this.producersService.get(this.producerID).subscribe({
       next: (data) => {
         console.info(data);
@@ -60,11 +66,11 @@ export class ProducersEditComponent implements OnInit {
           desc: data.desc,
           country: data.country,
         });
-        this.viewState = ViewState.LOAD_SUCCESS;
+        this.changeViewState(ViewState.LOAD_SUCCESS);
       },
       error: (err) => {
         console.error(err);
-        this.viewState = ViewState.LOAD_ERROR;
+        this.changeViewState(ViewState.LOAD_ERROR);
       },
     });
   }

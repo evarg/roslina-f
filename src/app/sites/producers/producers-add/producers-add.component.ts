@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ProducersService } from 'src/app/services/producers.service';
 import { ViewState } from 'src/app/enums/view-state';
+import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 export enum ProducerAddFormControlName {
   NAME = 'name',
@@ -25,7 +26,8 @@ export class ProducersAddComponent implements OnInit {
     public router: Router,
     private location: Location,
     private producersService: ProducersService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private statusSnackBarService: SnackBarService
   ) {
     this.producerForm = this.fb.group({
       [ProducerAddFormControlName.NAME]: ['', [Validators.required, Validators.minLength(0)]],
@@ -34,30 +36,35 @@ export class ProducersAddComponent implements OnInit {
     });
   }
 
+  public changeViewState(viewState: ViewState) {
+    this.viewState = viewState;
+    this.statusSnackBarService.show(viewState);
+  }
+
   back(): void {
-    this.viewState = ViewState.CLOSE;
+    this.changeViewState(ViewState.CLOSE);
     this.router.navigate(['/producers']);
   }
-  
+
   onSave() {
-    this.viewState = ViewState.SAVE_ATTEMPT;
+    this.changeViewState(ViewState.SAVE_ATTEMPT);
     this.producersService.create(this.producerForm.value).subscribe(
       {
         next: data => {
+          this.changeViewState(ViewState.SAVE_SUCCESS);
           console.info(data.id);
-          this.viewState = ViewState.SAVE_SUCCESS;
           this.router.navigate(['/producers/edit/' + data.id]);
 
         },
         error: err => {
           console.error(err);
-          this.viewState = ViewState.SAVE_ERROR;
+          this.changeViewState(ViewState.SAVE_ERROR);
         }
       }
     );
   }
 
   ngOnInit(): void {
-    this.viewState = ViewState.SUCCESS;
+    this.changeViewState(ViewState.SUCCESS)
   }
 }
