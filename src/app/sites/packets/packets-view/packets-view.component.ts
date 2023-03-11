@@ -1,27 +1,27 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewState } from 'src/app/enums/view-state';
-import { Producer, ProducersService } from 'src/app/services/producers.service';
+import { Packet, PacketsService } from 'src/app/services/packets.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
   selector: 'app-producers-view',
-  templateUrl: './producers-view.component.html',
-  styleUrls: ['./producers-view.component.scss'],
+  templateUrl: './packets-view.component.html',
+  styleUrls: ['./packets-view.component.scss']
 })
-export class ProducersViewComponent implements OnInit {
-  public producerID: number = 0;
+export class PacketsViewComponent implements OnInit {
+  public packetID: number = 0;
   public viewState: ViewState = ViewState.LOADING;
   public ViewState: typeof ViewState = ViewState;
-  public producer: Producer = {} as Producer;
+  public packet: Packet = {} as Packet;
 
   constructor(
     public router: Router,
     public route: ActivatedRoute,
-    private producersService: ProducersService,
+    private packetsService: PacketsService,
     private statusSnackBarService: SnackBarService
   ) {
-    this.producerID = this.route.snapshot.params['id'];
+    this.packetID = this.route.snapshot.params['id'];
   }
 
   public changeViewState(viewState: ViewState) {
@@ -31,9 +31,10 @@ export class ProducersViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.changeViewState(ViewState.LOAD_ATTEMPT);
-    this.producersService.get(this.producerID).subscribe({
+    this.packetsService.get(this.packetID).subscribe({
       next: (data) => {
-        this.producer = data;
+        this.packet = data;
+        console.log(data.producer);
         this.changeViewState(ViewState.LOAD_SUCCESS);
       },
       error: (err) => {
@@ -45,7 +46,6 @@ export class ProducersViewComponent implements OnInit {
 
   onBack(): void {
     this.changeViewState(ViewState.CLOSE);
-    this.router.navigate(['/producers']);
+    this.router.navigate(['/packets']);
   }
-
 }

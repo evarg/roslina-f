@@ -1,12 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Packet } from './packets.service';
 
 export interface Producer {
   id?: number;
   name: string;
   desc: string;
   country: string;
+  packets: Packet[];
   created_at?: string;
   updated_at?: string;
 }

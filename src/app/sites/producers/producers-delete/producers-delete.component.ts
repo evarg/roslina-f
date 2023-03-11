@@ -5,11 +5,11 @@ import { Producer, ProducersService } from 'src/app/services/producers.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
 @Component({
-  selector: 'app-producers-view',
-  templateUrl: './producers-view.component.html',
-  styleUrls: ['./producers-view.component.scss'],
+  selector: 'app-producers-delete',
+  templateUrl: './producers-delete.component.html',
+  styleUrls: ['./producers-delete.component.scss']
 })
-export class ProducersViewComponent implements OnInit {
+export class ProducersDeleteComponent implements OnInit {
   public producerID: number = 0;
   public viewState: ViewState = ViewState.LOADING;
   public ViewState: typeof ViewState = ViewState;
@@ -46,6 +46,20 @@ export class ProducersViewComponent implements OnInit {
   onBack(): void {
     this.changeViewState(ViewState.CLOSE);
     this.router.navigate(['/producers']);
+  }
+
+  onDelete(): void {
+    this.changeViewState(ViewState.SAVE_ATTEMPT);
+    this.producersService.delete(this.producerID).subscribe({
+      next: (data) => {
+        this.changeViewState(ViewState.SAVE_SUCCESS);
+        this.router.navigate(['/producers']);
+      },
+      error: (err) => {
+        console.error(err);
+        this.changeViewState(ViewState.SAVE_ERROR);
+      },
+    });
   }
 
 }
