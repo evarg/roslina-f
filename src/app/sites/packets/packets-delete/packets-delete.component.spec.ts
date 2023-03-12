@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProducersEditComponent } from './producers-edit.component';
+import { PacketsDeleteComponent } from './packets-delete.component';
 
-describe('ProducersEditComponent', () => {
-  let component: ProducersEditComponent;
-  let fixture: ComponentFixture<ProducersEditComponent>;
+describe('PacketsDeleteComponent', () => {
+  let component: PacketsDeleteComponent;
+  let fixture: ComponentFixture<PacketsDeleteComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProducersEditComponent ]
+      declarations: [ PacketsDeleteComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(ProducersEditComponent);
+    fixture = TestBed.createComponent(PacketsDeleteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

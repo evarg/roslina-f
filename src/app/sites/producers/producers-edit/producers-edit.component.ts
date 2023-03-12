@@ -1,77 +1,100 @@
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { ViewState } from 'src/app/enums/view-state';
-import { Producer, ProducersService } from 'src/app/services/producers.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ViewState } from "src/app/enums/view-state";
+import { FormProducerService, ProducerFCN } from "src/app/services/forms/form-producer.service";
+import { ProducersService } from "src/app/services/producers.service";
+import { SnackBarService } from "src/app/services/snack-bar.service";
 
 @Component({
-  selector: 'app-producers-edit',
-  templateUrl: './producers-edit.component.html',
-  styleUrls: ['./producers-edit.component.scss'],
+    selector: "app-producers-edit",
+    templateUrl: "./producers-edit.component.html",
+    styleUrls: ["./producers-edit.component.scss"],
 })
 export class ProducersEditComponent implements OnInit {
-  public producerID: number = 0;
-  public producerForm: FormGroup;
-  public viewState: ViewState = ViewState.LOADING;
-  public ViewState: typeof ViewState = ViewState;
+    public producerID: number = 0;
+    public producerForm: FormGroup;
+    public producerTitle: string = "";
+    public viewState: ViewState = ViewState.LOADING;
+    public ViewState: typeof ViewState = ViewState;
+    public ProducerFCN: typeof ProducerFCN = ProducerFCN;
 
-  constructor(
-    public router: Router,
-    public route: ActivatedRoute,
-    private producersService: ProducersService,
-    private fb: FormBuilder,
-    private statusSnackBarService: SnackBarService
-  ) {
-    this.producerForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(0)]],
-      desc: [''],
-      country: [''],
-    });
-    this.producerID = this.route.snapshot.params['id'];
-  }
+    constructor(
+        public router: Router,
+        public route: ActivatedRoute,
+        private producersService: ProducersService,
+        private formService: FormProducerService,
+        private statusSnackBarService: SnackBarService
+    ) {
+        if (this.route.snapshot.params["id"]) {
+            this.producerID = this.route.snapshot.params["id"];
+        }
+    }
 
-  public changeViewState(viewState: ViewState) {
-    this.viewState = viewState;
-    this.statusSnackBarService.show(viewState);
-  }
+    public changeViewState(viewState: ViewState) {
+        this.viewState = viewState;
+        this.statusSnackBarService.show(viewState);
+    }
 
-  back(): void {
-    this.changeViewState(ViewState.CLOSE);
-    this.router.navigate(['/producers']);
-  }
+    ngOnInit(): void {
+        this.producerForm = this.formService.initForm();
+        if (this.producerID) this.initEdit();
+        else this.initAdd();
+    }
 
-  onSave() {
-    this.changeViewState(ViewState.SAVE_ATTEMPT);
-    this.producersService
-      .modify(this.producerID, this.producerForm.value)
-      .subscribe({
-        next: (data) => {
-          this.changeViewState(ViewState.SAVE_SUCCESS);
-        },
-        error: (err) => {
-          console.error(err);
-          this.changeViewState(ViewState.SAVE_ERROR);
-        },
-      });
-  }
+    onBack(): void {
+        this.changeViewState(ViewState.CLOSE);
+        this.router.navigate(["/producers"]);
+    }
 
-  ngOnInit(): void {
-    this.changeViewState(ViewState.LOAD_ATTEMPT);
-    this.producersService.get(this.producerID).subscribe({
-      next: (data) => {
-        console.info(data);
-        this.producerForm.setValue({
-          name: data.name,
-          desc: data.desc,
-          country: data.country,
+    onSave() {
+        if (this.producerID) this.saveEdit();
+        else this.saveAdd();
+    }
+
+    saveAdd() {
+        this.changeViewState(ViewState.SAVE_ATTEMPT);
+        this.producersService.create(this.producerForm.value).subscribe({
+            next: (data) => {
+                this.changeViewState(ViewState.SAVE_SUCCESS);
+                this.router.navigate(["/producers/edit/" + data.id]);
+            },
+            error: (err) => {
+                console.error(err);
+                this.changeViewState(ViewState.SAVE_ERROR);
+            },
         });
-        this.changeViewState(ViewState.LOAD_SUCCESS);
-      },
-      error: (err) => {
-        console.error(err);
-        this.changeViewState(ViewState.LOAD_ERROR);
-      },
-    });
-  }
+    }
+
+    saveEdit() {
+        this.changeViewState(ViewState.SAVE_ATTEMPT);
+        this.producersService.modify(this.producerID, this.producerForm.value).subscribe({
+            next: (data) => {
+                this.changeViewState(ViewState.SAVE_SUCCESS);
+            },
+            error: (err) => {
+                console.error(err);
+                this.changeViewState(ViewState.SAVE_ERROR);
+            },
+        });
+    }
+
+    initAdd() {
+        this.producerTitle = "Nowy poducent";
+    }
+
+    initEdit() {
+        this.changeViewState(ViewState.LOAD_ATTEMPT);
+        this.producersService.get(this.producerID).subscribe({
+            next: (data) => {
+                this.producerForm.setValue(this.formService.prepareFormDataFromPacket(data));
+                this.producerTitle = data.name;
+                this.changeViewState(ViewState.LOAD_SUCCESS);
+            },
+            error: (err) => {
+                console.error(err);
+                this.changeViewState(ViewState.LOAD_ERROR);
+            },
+        });
+    }
 }

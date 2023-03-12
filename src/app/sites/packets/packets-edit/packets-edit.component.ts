@@ -1,122 +1,112 @@
-import { Component, OnInit } from '@angular/core';
-import {
-  FormBuilder,
-  FormGroup,
-  Validators,
-} from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import * as moment from 'moment';
-import { ViewState } from 'src/app/enums/view-state';
-import { Packet, PacketsService } from 'src/app/services/packets.service';
-import { Producer, ProducersService } from 'src/app/services/producers.service';
-import { SnackBarService } from 'src/app/services/snack-bar.service';
+import { Component, OnInit } from "@angular/core";
+import { FormGroup } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { ViewState } from "src/app/enums/view-state";
 
-export enum FCN_PacketEdit {
-  NAME = 'name',
-  DESC = 'desc',
-  NAME_POLISH = 'name_polish',
-  NAME_LATIN = 'name_latin',
-  PRODUCER_ID = 'producer_id',
-  EXPIRATION_DATE = 'expiration_date',
-  PURCHASE_DATE = 'purchase_date',
-}
+import { FormPacketService, PacketFCN } from "src/app/services/forms/form-packet.service";
+import { PacketsService } from "src/app/services/packets.service";
+import { Producer, ProducersService } from "src/app/services/producers.service";
+import { SnackBarService } from "src/app/services/snack-bar.service";
 
 @Component({
-  selector: 'app-producers-edit',
-  templateUrl: './packets-edit.component.html',
-  styleUrls: ['./packets-edit.component.scss'],
+    selector: "app-producers-edit",
+    templateUrl: "./packets-edit.component.html",
+    styleUrls: ["./packets-edit.component.scss"],
 })
 export class PacketsEditComponent implements OnInit {
-  public packetID: number = 0;
-  public packet: Packet = {} as Packet;
-  public packetForm: FormGroup;
-  public loadedProducers: Producer[];
-  public viewState: ViewState = ViewState.LOADING;
-  public ViewState: typeof ViewState = ViewState;
-  public FCN_PacketEdit: typeof FCN_PacketEdit = FCN_PacketEdit;
+    public packetID: number = 0;
+    public packetForm: FormGroup;
+    public packetTitle: string = "";
+    public loadedProducers: Producer[];
+    public viewState: ViewState = ViewState.LOADING;
+    public ViewState: typeof ViewState = ViewState;
+    public PacketFCN: typeof PacketFCN = PacketFCN;
 
-  constructor(
-    public router: Router,
-    public route: ActivatedRoute,
-    private packetsService: PacketsService,
-    private producersService: ProducersService,
-    private fb: FormBuilder,
-    private statusSnackBarService: SnackBarService
-  ) {
-    this.packetID = this.route.snapshot.params['id'];
-    this.packetForm = this.fb.group({
-      [FCN_PacketEdit.NAME]: [
-        '',
-        [Validators.required, Validators.minLength(2)],
-      ],
-      [FCN_PacketEdit.DESC]: [''],
-      [FCN_PacketEdit.NAME_POLISH]: [''],
-      [FCN_PacketEdit.NAME_LATIN]: [''],
-      [FCN_PacketEdit.PRODUCER_ID]: [
-        '',
-        [Validators.required, Validators.min(1)],
-      ],
-      [FCN_PacketEdit.EXPIRATION_DATE]: [''],
-      [FCN_PacketEdit.PURCHASE_DATE]: [''],
-    });
-  }
+    constructor(
+        public router: Router,
+        public route: ActivatedRoute,
+        private packetsService: PacketsService,
+        private producersService: ProducersService,
+        private formService: FormPacketService,
+        private statusSnackBarService: SnackBarService
+    ) {}
 
-  public changeViewState(viewState: ViewState) {
-    this.viewState = viewState;
-    this.statusSnackBarService.show(viewState);
-  }
+    public changeViewState(viewState: ViewState) {
+        this.viewState = viewState;
+        this.statusSnackBarService.show(viewState);
+    }
 
-  onBack(): void {
-    this.changeViewState(ViewState.CLOSE);
-    this.router.navigate(['/packets']);
-  }
+    ngOnInit(): void {
+        this.packetID = this.route.snapshot.params["id"];
+        this.packetForm = this.formService.initForm();
 
-  onSave() {
-    let dataValues = this.packetForm.value;
-    dataValues['expiration_date'] =
-      dataValues.expiration_date.format('YYYY.MM.DD');
-    dataValues['purchase_date'] = dataValues.purchase_date.format('YYYY.MM.DD');
+        if (this.packetID) this.initEdit();
+        else this.initAdd();
+    }
 
-    this.changeViewState(ViewState.SAVE_ATTEMPT);
-    this.packetsService.modify(this.packetID, dataValues).subscribe({
-      next: (data) => {
-        this.changeViewState(ViewState.SAVE_SUCCESS);
-        this.router.navigate(['/packets/edit/' + data.id]);
-      },
-      error: (err) => {
-        console.error(err);
-        this.changeViewState(ViewState.SAVE_ERROR);
-      },
-    });
-  }
+    onBack(): void {
+        this.changeViewState(ViewState.CLOSE);
+        this.router.navigate(["/packets"]);
+    }
 
-  ngOnInit(): void {
-    this.changeViewState(ViewState.LOAD_ATTEMPT);
-    this.packetsService.get(this.packetID).subscribe({
-      next: (data) => {
-        this.packetForm.setValue({
-          name: data.name,
-          desc: data.desc,
-          name_polish: data.name_polish,
-          name_latin: data.name_latin,
-          producer_id: data.producer_id,
-          expiration_date: moment(data.expiration_date, 'YYYY.MM.DD'),
-          purchase_date: moment(data.purchase_date, 'YYYY.MM.DD'),
+    onSave() {
+        if (this.packetID) this.saveEdit();
+        else this.saveAdd();
+    }
+
+    initAdd() {
+        this.packetTitle = "Nowy pakiet";
+        this.prepareProducersSelect(0);
+    }
+
+    saveAdd() {
+        this.changeViewState(ViewState.SAVE_ATTEMPT);
+        this.packetsService.create(this.formService.preparePacketFromFormData(this.packetForm)).subscribe({
+            next: (data) => {
+                this.changeViewState(ViewState.SAVE_SUCCESS);
+                this.router.navigate(["/packets/edit/" + data.id]);
+            },
+            error: (err) => {
+                console.error(err);
+                this.changeViewState(ViewState.SAVE_ERROR);
+            },
         });
-        this.prepareProducersSelect(data.producer_id);
-        this.changeViewState(ViewState.LOAD_SUCCESS);
-      },
-      error: (err) => {
-        console.error(err);
-        this.changeViewState(ViewState.LOAD_ERROR);
-      },
-    });
-  }
+    }
 
-  private prepareProducersSelect(producerID: number): void {
-    this.producersService.list().subscribe((producersData) => {
-      this.loadedProducers = producersData;
-      this.packetForm.get('producer_id')?.setValue(producerID);
-    });
-  }
+    initEdit() {
+        this.changeViewState(ViewState.LOAD_ATTEMPT);
+        this.packetsService.get(this.packetID).subscribe({
+            next: (data) => {
+                this.packetForm.setValue(this.formService.prepareFormDataFromPacket(data));
+                this.prepareProducersSelect(data.producer_id);
+                this.packetTitle = data.name;
+                this.changeViewState(ViewState.LOAD_SUCCESS);
+            },
+            error: (err) => {
+                console.error(err);
+                this.changeViewState(ViewState.LOAD_ERROR);
+            },
+        });
+    }
+
+    saveEdit() {
+        this.changeViewState(ViewState.SAVE_ATTEMPT);
+        this.packetsService.modify(this.packetID, this.formService.preparePacketFromFormData(this.packetForm)).subscribe({
+            next: (data) => {
+                this.changeViewState(ViewState.SAVE_SUCCESS);
+                this.router.navigate(["/packets/edit/" + data.id]);
+            },
+            error: (err) => {
+                console.error(err);
+                this.changeViewState(ViewState.SAVE_ERROR);
+            },
+        });
+    }
+
+    private prepareProducersSelect(producerID: number): void {
+        this.producersService.list().subscribe((producersData) => {
+            this.loadedProducers = producersData;
+            this.packetForm.get(PacketFCN.PRODUCER_ID)?.setValue(producerID);
+        });
+    }
 }

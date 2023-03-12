@@ -8,7 +8,7 @@ export interface Producer {
   name: string;
   desc: string;
   country: string;
-  packets: Packet[];
+  packets?: Packet[];
   created_at?: string;
   updated_at?: string;
 }
