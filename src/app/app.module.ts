@@ -23,6 +23,7 @@ import { LOCALE_ID } from "@angular/core";
 import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/material/core";
 import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
+import { UploadFileComponent } from './componets/upload-file/upload-file.component';
 
 export const DATE_FORMATS = {
     parse: {
@@ -51,6 +52,7 @@ export const DATE_FORMATS = {
         PacketsDeleteComponent,
 
         ViewStateMessagePipe,
+         UploadFileComponent,
     ],
     imports: [
         BrowserModule,

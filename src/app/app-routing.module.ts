@@ -10,6 +10,7 @@ import { PacketsEditComponent } from "./sites/packets/packets-edit/packets-edit.
 import { PacketsListComponent } from "./sites/packets/packets-list/packets-list.component";
 import { PacketsViewComponent } from "./sites/packets/packets-view/packets-view.component";
 import { PacketsDeleteComponent } from "./sites/packets/packets-delete/packets-delete.component";
+import { UploadFileComponent } from "./componets/upload-file/upload-file.component";
 
 const routes: Routes = [
     {
@@ -32,6 +33,13 @@ const routes: Routes = [
             { path: "delete/:id", component: PacketsDeleteComponent },
         ],
     },
+    {
+        path: "files",
+        children: [
+            { path: "", component: UploadFileComponent },
+        ],
+    },
+
 ];
 
 @NgModule({
