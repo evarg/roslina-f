@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ViewState } from 'src/app/enums/view-state';
+import { ConfigService } from 'src/app/services/config.service';
 import { Packet, PacketsService } from 'src/app/services/packets.service';
 import { SnackBarService } from 'src/app/services/snack-bar.service';
 
@@ -19,7 +20,8 @@ export class PacketsViewComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
     private packetsService: PacketsService,
-    private statusSnackBarService: SnackBarService
+    private statusSnackBarService: SnackBarService,
+    private configService: ConfigService
   ) {
     this.packetID = this.route.snapshot.params['id'];
   }
@@ -27,6 +29,10 @@ export class PacketsViewComponent implements OnInit {
   public changeViewState(viewState: ViewState) {
     this.viewState = viewState;
     this.statusSnackBarService.show(viewState);
+  }
+
+  getMiniature(fileName: string):string{
+    return this.configService.API_IMAGE + fileName.replace('public', 'storage');
   }
 
   ngOnInit(): void {

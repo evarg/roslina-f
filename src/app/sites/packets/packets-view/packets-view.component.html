@@ -1,21 +1,30 @@
 <mat-card>
-  <mat-card-header>
-    <mat-card-title>Właściwości pakietu</mat-card-title>
-    <mat-card-subtitle>Pakiet nasion: {{ packet.name }} ({{ packet.id }})</mat-card-subtitle>
-  </mat-card-header>
+    <mat-card-header>
+        <mat-card-title>Właściwości pakietu</mat-card-title>
+        <mat-card-subtitle>Pakiet nasion: {{ packet.name }} ({{ packet.id }})</mat-card-subtitle>
+    </mat-card-header>
 
-  <mat-card-content>
-    <h3><b>Nazwa:</b> {{packet.name}}</h3>
-    <h3><b>Opis:</b><br> {{packet.desc}}</h3>
-    <h3><b>Nazwa polska:</b> {{packet.name_polish}}</h3>
-    <h3><b>Nazwa łacińska:</b> {{packet.name_latin}}</h3>
-    <h3><b>Producent:</b> {{packet.producer?.name}}</h3>
-    <h3>
-      <b>Data zakupu: </b> {{packet.purchase_date}}<br>
-      <b>Data ważności: </b> {{packet.expiration_date}}
-    </h3>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button (click)="onBack()">Wróć</button>
-  </mat-card-actions>
+    <mat-card-content>
+        <mat-list>
+            <div mat-subheader>Ogólne</div>
+            <mat-list-item><b>Nazwa:</b> {{packet.name}}</mat-list-item>
+            <mat-list-item><b>Opis:</b> {{packet.desc}}</mat-list-item>
+            <mat-list-item><b>Nazwa polska/łacińska:</b> {{packet.name_polish}} / {{packet.name_latin}}</mat-list-item>
+            <mat-list-item><b>Producent:</b> {{packet.producer?.name}}</mat-list-item>
+            <mat-list-item><b>Data zakupu/ważności: </b> {{packet.purchase_date}} /
+                {{packet.expiration_date}}<br>
+            </mat-list-item>
+            <div mat-subheader>Pliki</div>
+            <mat-list-item *ngFor="let file of packet.files">
+                <img src="{{ getMiniature(file.file_name) }}" width="50">
+                <!-- <mat-icon matListItemIcon>folder</mat-icon> -->
+
+                <div matListItemTitle>{{file.name}}</div>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+        </mat-list>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button (click)="onBack()">Wróć</button>
+    </mat-card-actions>
 </mat-card>
