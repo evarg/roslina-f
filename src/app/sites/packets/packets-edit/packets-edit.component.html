@@ -1,76 +1,84 @@
 <form [formGroup]="packetForm" #b="ngForm" class="form-horizontal">
-  <mat-card>
-    <mat-card-header>
-      <mat-card-title>Pakiet: {{ packetTitle }}</mat-card-title>
-      <mat-card-subtitle>Opakowanie nasion: {{packetForm.get(PacketFCN.NAME)?.value}} ({{packetID}})</mat-card-subtitle>
-    </mat-card-header>
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Pakiet: {{ packetTitle }}</mat-card-title>
+            <mat-card-subtitle>
+                <button mat-button type="button" class="btn btn-default" (click)="onSave()"
+                    [disabled]="packetForm.invalid">
+                    Zapisz
+                </button>
+                <button mat-button (click)="onBack()">Wróć</button>
+            </mat-card-subtitle>
+        </mat-card-header>
 
-    <mat-card-content>
-      <div>
-        <mat-form-field [ngStyle]="{'width.px': 600}">
-          <mat-label>Nazwa</mat-label>
-          <input matInput formControlName="{{PacketFCN.NAME}}" />
-          <mat-error *ngIf="packetForm.get(PacketFCN.NAME)?.invalid">Błąd</mat-error>
-        </mat-form-field>
-      </div>
+        <mat-card-content>
+            <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+                <mat-tab label="Ogólne">
+                    <div>
+                        <mat-form-field [ngStyle]="{'width.px': 600}">
+                            <mat-label>Nazwa</mat-label>
+                            <input matInput formControlName="{{PacketFCN.NAME}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.NAME)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
 
-      <div>
-        <mat-form-field [ngStyle]="{'width.px': 600}">
-          <mat-label>Opis</mat-label>
-          <textarea matInput formControlName="{{PacketFCN.DESC}}"></textarea>
-          <mat-error *ngIf="packetForm.get(PacketFCN.DESC)?.invalid">Błąd</mat-error>
-        </mat-form-field>
-      </div>
+                    <div>
+                        <mat-form-field [ngStyle]="{'width.px': 600}">
+                            <mat-label>Opis</mat-label>
+                            <textarea matInput formControlName="{{PacketFCN.DESC}}"></textarea>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.DESC)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
 
-      <div>
-        <mat-form-field [ngStyle]="{'width.px': 300}">
-          <mat-label>Nazwa polska</mat-label>
-          <input matInput formControlName="{{PacketFCN.NAME_POLISH}}" />
-          <mat-error *ngIf="packetForm.get(PacketFCN.NAME_POLISH)?.invalid">Błąd</mat-error>
-        </mat-form-field>
+                    <div>
+                        <mat-form-field [ngStyle]="{'width.px': 300}">
+                            <mat-label>Nazwa polska</mat-label>
+                            <input matInput formControlName="{{PacketFCN.NAME_POLISH}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.NAME_POLISH)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
 
-        <mat-form-field [ngStyle]="{'width.px': 290, 'margin-left.px' : 10}">
-          <mat-label>Nazwa łacińska</mat-label>
-          <input matInput formControlName="{{PacketFCN.NAME_LATIN}}" />
-          <mat-error *ngIf="packetForm.get(PacketFCN.NAME_LATIN)?.invalid">Błąd</mat-error>
-        </mat-form-field>
-      </div>
+                        <mat-form-field [ngStyle]="{'width.px': 290, 'margin-left.px' : 10}">
+                            <mat-label>Nazwa łacińska</mat-label>
+                            <input matInput formControlName="{{PacketFCN.NAME_LATIN}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.NAME_LATIN)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
 
-      <div>
-        <mat-form-field [ngStyle]="{'width.px': 200}">
-          <mat-label>Producent</mat-label>
-          <mat-select formControlName="{{PacketFCN.PRODUCER_ID}}">
-            <mat-option *ngFor="let lP of loadedProducers" [value]="lP.id">
-              {{lP.name}}
-            </mat-option>
-          </mat-select>
-          <mat-error *ngIf="packetForm.get(PacketFCN.PRODUCER_ID)?.invalid">Błąd</mat-error>
-        </mat-form-field>
+                    <div>
+                        <mat-form-field [ngStyle]="{'width.px': 200}">
+                            <mat-label>Producent</mat-label>
+                            <mat-select formControlName="{{PacketFCN.PRODUCER_ID}}">
+                                <mat-option *ngFor="let lP of loadedProducers" [value]="lP.id">
+                                    {{lP.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.PRODUCER_ID)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
 
-        <mat-form-field [ngStyle]="{'width.px': 190, 'margin-left.px' : 10}">
-          <mat-label>Data ważności</mat-label>
-          <input matInput [matDatepicker]="picker1" formControlName="{{PacketFCN.EXPIRATION_DATE}}">
-          <mat-hint>YYYY-MM-DD</mat-hint>
-          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-          <mat-datepicker #picker1></mat-datepicker>
-          <mat-error *ngIf="packetForm.get(PacketFCN.EXPIRATION_DATE)?.invalid">Błąd</mat-error>
-        </mat-form-field>
+                        <mat-form-field [ngStyle]="{'width.px': 190, 'margin-left.px' : 10}">
+                            <mat-label>Data ważności</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="{{PacketFCN.EXPIRATION_DATE}}">
+                            <mat-hint>YYYY-MM-DD</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.EXPIRATION_DATE)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
 
-        <mat-form-field [ngStyle]="{'width.px': 190, 'margin-left.px' : 10}">
-          <mat-label>Data zakupu</mat-label>
-          <input matInput [matDatepicker]="picker2" formControlName="{{PacketFCN.PURCHASE_DATE}}">
-          <mat-hint>YYYY-MM-DD</mat-hint>
-          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-          <mat-datepicker #picker2></mat-datepicker>
-          <mat-error *ngIf="packetForm.get(PacketFCN.PURCHASE_DATE)?.invalid">Błąd</mat-error>
-        </mat-form-field>
-      </div>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-button type="button" class="btn btn-default" (click)="onSave()" [disabled]="packetForm.invalid">
-        Zapisz
-      </button>
-      <button mat-button (click)="onBack()">Wróć</button>
-    </mat-card-actions>
-  </mat-card>
+                        <mat-form-field [ngStyle]="{'width.px': 190, 'margin-left.px' : 10}">
+                            <mat-label>Data zakupu</mat-label>
+                            <input matInput [matDatepicker]="picker2" formControlName="{{PacketFCN.PURCHASE_DATE}}">
+                            <mat-hint>YYYY-MM-DD</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.PURCHASE_DATE)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
+                </mat-tab>
+                <mat-tab label="Obrazy"></mat-tab>
+                <mat-tab label="Katalog"></mat-tab>
+            </mat-tab-group>
+        </mat-card-content>
+        <mat-card-actions>
+        </mat-card-actions>
+    </mat-card>
 </form>
