@@ -11,8 +11,12 @@ import { PacketsListComponent } from "./sites/packets/packets-list/packets-list.
 import { PacketsViewComponent } from "./sites/packets/packets-view/packets-view.component";
 import { PacketsDeleteComponent } from "./sites/packets/packets-delete/packets-delete.component";
 import { UploadFileComponent } from "./componets/upload-file/upload-file.component";
+import { PacketFormAddFileComponent } from "./sites/packets/packet-form-add-file/packet-form-add-file.component";
+import { SplashScreenComponent } from "./components/splash-screen/splash-screen.component";
+import { HomeComponent } from "./sites/home/home.component";
 
 const routes: Routes = [
+    { path: "", component: SplashScreenComponent },
     {
         path: "producers",
         children: [
@@ -31,15 +35,17 @@ const routes: Routes = [
             { path: "edit/:id", component: PacketsEditComponent },
             { path: "view/:id", component: PacketsViewComponent },
             { path: "delete/:id", component: PacketsDeleteComponent },
+            { path: "edit/:id/form_add_file", component: PacketFormAddFileComponent },
         ],
     },
     {
         path: "files",
-        children: [
-            { path: "", component: UploadFileComponent },
-        ],
+        children: [{ path: "", component: UploadFileComponent }],
     },
-
+    {
+        path: "home",
+        children: [{ path: "", component: HomeComponent }],
+    },
 ];
 
 @NgModule({

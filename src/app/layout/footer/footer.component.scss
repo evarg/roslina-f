@@ -1,0 +1,33 @@
+.container-footer {
+    color:#ffffff;
+
+}
+
+.container-footer .mat-toolbar {
+    background-color: #001524;
+}
+
+.container-footer .mat-toolbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    color: #ffffff;
+}
+
+.container-footer .mat-toolbar li {
+    color: #ffffff;
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}
+
+.container-footer .footer-button {
+    color: #ffffff;
+    float: left;
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}

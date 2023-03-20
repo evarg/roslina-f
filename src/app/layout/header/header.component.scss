@@ -1,0 +1,40 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.mat-toolbar {
+    background-color: rgb(255, 255, 255);
+    height: 100px;
+}
+
+.nav-bar-button {
+    font-size: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+    color: rgb(51, 51, 51);
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
+    text-decoration-color: rgb(124, 171, 70);
+    text-size-adjust: 100%;
+    transition-delay: 0s;
+    transition-duration: 0s;
+    transition-property: all;
+    transition-timing-function: linear;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+li {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 16px;
+    text-decoration: none;
+}

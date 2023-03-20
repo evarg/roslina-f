@@ -24,6 +24,15 @@ import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from "@angular/materia
 import { MomentDateAdapter } from "@angular/material-moment-adapter";
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from "@angular/material/form-field";
 import { UploadFileComponent } from "./componets/upload-file/upload-file.component";
+import { PacketFormAddFileComponent } from './sites/packets/packet-form-add-file/packet-form-add-file.component';
+import { SplashScreenComponent } from './components/splash-screen/splash-screen.component';
+import { HomeComponent } from './sites/home/home.component';
+import { HeaderComponent } from './layout/header/header.component';
+import { ContainerADComponent } from './layout/container-ad/container-ad.component';
+import { FooterComponent } from './layout/footer/footer.component';
+import { ContainerBox4Component } from './layout/container-box4/container-box4.component';
+import { ContainerBox3Component } from './layout/container-box3/container-box3.component';
+import { ContainerAD4Component } from './layout/container-ad4/container-ad4.component';
 
 export const DATE_FORMATS = {
     parse: {
@@ -53,6 +62,15 @@ export const DATE_FORMATS = {
 
         ViewStateMessagePipe,
         UploadFileComponent,
+        PacketFormAddFileComponent,
+        SplashScreenComponent,
+        HomeComponent,
+        HeaderComponent,
+        ContainerADComponent,
+        FooterComponent,
+        ContainerBox4Component,
+        ContainerBox3Component,
+        ContainerAD4Component,
 
     ],
     imports: [
