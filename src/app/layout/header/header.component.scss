@@ -1,4 +1,4 @@
-.example-spacer {
+.spacer {
     flex: 1 1 auto;
 }
 
@@ -8,18 +8,25 @@
 }
 
 .nav-bar-button {
-    font-size: 20px;
+    font-size: 16px;
     font-family: "Open Sans", sans-serif;
     font-weight: 400;
-    color: rgb(51, 51, 51);
+    color: #333333;
     text-decoration-style: solid;
-    text-decoration-thickness: auto;
-    text-decoration-color: rgb(124, 171, 70);
+    text-decoration: none;
     text-size-adjust: 100%;
     transition-delay: 0s;
     transition-duration: 0s;
     transition-property: all;
     transition-timing-function: linear;
+    -webkit-font-smoothing: antialiased !important;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.nav-bar-button:hover {
+    color: rgb(124, 171, 70);
+    text-decoration-style: solid;
+    text-decoration-thickness: auto;
     -webkit-font-smoothing: antialiased !important;
     -moz-osx-font-smoothing: grayscale;
 }

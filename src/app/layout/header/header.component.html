@@ -1,14 +1,16 @@
 <mat-toolbar>
-    <img src="assets/roslina-logo.png">
+    <a [routerLink]="['']" routerLinkActive="router-link-active" class="nav-bar-button">
+        <img src="assets/roslina-logo.png" height="70px"></a>
     <ul>
-        <li><a class="nav-bar-button">Zdjęcia</a></li>
+        <li><a [routerLink]="['/sub/packets']" routerLinkActive="router-link-active"  class="nav-bar-button">Nasiona</a></li>
         <li><a class="nav-bar-button">Nasiona</a></li>
         <li><a class="nav-bar-button">Kalendarz</a></li>
     </ul>
-    <span class="example-spacer"></span>
+    <span class="spacer"></span>
     <ul>
         <li><a class="nav-bar-button">About</a></li>
-        <li><a class="nav-bar-button">Kontakt</a></li>
+        <li><a [routerLink]="['/sub/contact']" routerLinkActive="router-link-active" class="nav-bar-button">Kontakt</a>
+        </li>
     </ul>
     <button mat-icon-button class="" aria-label="">
         <mat-icon>favorite</mat-icon>

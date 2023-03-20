@@ -1,0 +1,62 @@
+.container-packets {
+    background-color: #F8F6F3;
+    height: 720px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1 1 auto;
+    flex-direction: row;
+}
+
+.container-packets .content {
+    width: 1280px;
+    height: 100%;
+}
+
+.container-packets .widgets {
+    //background-color: pink;
+    width: 305px;
+    height: 100%;
+    margin-top: 64px;
+    margin-bottom: 30px;
+}
+
+.container-packets .list {
+    border-left-color: rgb(221, 221, 221);
+    border-left-style: solid;
+    border-left-width: 1px;
+    margin-top: 64px;
+    margin-bottom: 30px;
+    //background-color: yellow;
+    width: 915px;
+    height: 100%;
+}
+
+
+.container-packets .packets-box h1 {
+    font-size: 22px;
+    text-align: center;
+    color: #333333;
+    font-weight: 700;
+    font-family: "Open Sans", sans-serif;
+}
+
+.container-packets .packets-box h2 {
+    font-size: 20px;
+    text-align: center;
+    color: #111111;
+    font-weight: 700;
+    margin-top: 0px;
+    font-family: "Merriweather", serif;
+}
+
+.container-packets .packets-box h3 {
+    font-size: 136px;
+    text-align: center;
+    color: #111111;
+    font-weight: 700;
+    margin-top: 0px;
+    margin-right: 22px;
+    font-family: "Merriweather", serif;
+}
+

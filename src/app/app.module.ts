@@ -33,6 +33,10 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { ContainerBox4Component } from './layout/container-box4/container-box4.component';
 import { ContainerBox3Component } from './layout/container-box3/container-box3.component';
 import { ContainerAD4Component } from './layout/container-ad4/container-ad4.component';
+import { MainPageComponent } from './layout/main-page/main-page.component';
+import { SubPageComponent } from './layout/sub-page/sub-page.component';
+import { ContactComponent } from './sites/sub/contact/contact.component';
+import { PacketsComponent } from './sites/sub/packets/packets.component';
 
 export const DATE_FORMATS = {
     parse: {
@@ -71,6 +75,10 @@ export const DATE_FORMATS = {
         ContainerBox4Component,
         ContainerBox3Component,
         ContainerAD4Component,
+        MainPageComponent,
+        SubPageComponent,
+        ContactComponent,
+        PacketsComponent,
 
     ],
     imports: [

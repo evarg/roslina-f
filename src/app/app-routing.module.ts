@@ -14,9 +14,28 @@ import { UploadFileComponent } from "./componets/upload-file/upload-file.compone
 import { PacketFormAddFileComponent } from "./sites/packets/packet-form-add-file/packet-form-add-file.component";
 import { SplashScreenComponent } from "./components/splash-screen/splash-screen.component";
 import { HomeComponent } from "./sites/home/home.component";
+import { MainPageComponent } from "./layout/main-page/main-page.component";
+import { SubPageComponent } from "./layout/sub-page/sub-page.component";
+import { ContactComponent } from "./sites/sub/contact/contact.component";
+import { PacketsComponent } from "./sites/sub/packets/packets.component";
 
 const routes: Routes = [
-    { path: "", component: SplashScreenComponent },
+    { path: "", component: MainPageComponent },
+    {
+        path: "sub",
+        component: SubPageComponent,
+        children: [
+            { path: "contact", component: ContactComponent },
+            { path: "packets", component: PacketsComponent },
+
+            { path: "producers", component: ProducersListComponent },
+            { path: "add", component: ProducersEditComponent },
+            { path: "edit/:id", component: ProducersEditComponent },
+            { path: "view/:id", component: ProducersViewComponent },
+            { path: "delete/:id", component: ProducersDeleteComponent },
+        ],
+    },
+
     {
         path: "producers",
         children: [
