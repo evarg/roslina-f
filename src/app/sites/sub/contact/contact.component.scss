@@ -1,66 +1,94 @@
-.container-contact-header {
-    height: 120px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #F8F6F3;
-}
-
-.container-contact-header h1 {
-    background-color: #ffffff;
-    color: rgb(17, 17, 17);
-    font-size: 54px;
-    font-weight: 700;
-    justify-content: center;
-    align-items: center;
-    font-family: "Merriweather", serif;
-    margin-top: 30px;
-}
-
 .container-contact {
-    background-color: #F8F6F3;
+    background-color: var(--back-color-1);
     height: 720px;
+    justify-content: center;
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.container-contact .content {
+    justify-content: center;
     display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    max-width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.container-contact .content .header {
     justify-content: center;
     align-items: center;
 }
 
-.container-contact .contact-box {
-    background-color: white;
-    width: 310px;
-    height: 410px;
+.container-contact .content .header h1 {
+    color: rgb(17, 17, 17);
+    font-size: 52px;
+    font-weight: 700;
+    font-family: "Merriweather", serif;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.container-contact .content .page {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
+}
+
+.container-contact .content .page .box {
+    border-color: var(--border-color-1);
+    background-color: var(--back-color-1);
+    border-radius: 3px;
+    border-style: solid;
+    border-width: 1px;
+    width: 33.333%;
     align-content: center;
     margin-left: 20px;
     margin-right: 20px;
     padding-top: 20px;
-    border-radius: 8px;
     font-size: 48px;
 }
 
-.container-contact .contact-box h1 {
-    font-size: 22px;
+.container-contact .content .page .box h1 {
+    font-size: 16px;
     text-align: center;
-    color: #333333;
-    font-weight: 700;
+    color: var(--main-color-1);
+    font-weight: 400;
     font-family: "Open Sans", sans-serif;
+    -webkit-font-smoothing: antialiased;
 }
 
-.container-contact .contact-box h2 {
+.container-contact .content .page .box h2 {
     font-size: 20px;
     text-align: center;
-    color: #111111;
+    color: var(--text-color-1);
     font-weight: 700;
     margin-top: 0px;
     font-family: "Merriweather", serif;
 }
 
-.container-contact .contact-box h3 {
-    font-size: 136px;
+.container-contact .content .page .box h3 {
     text-align: center;
-    color: #111111;
+    color: var(--text-color-4);
     font-weight: 700;
     margin-top: 0px;
     margin-right: 22px;
     font-family: "Merriweather", serif;
 }
 
+@media screen and (max-width: 800px) {
+    .container-contact .content .page {
+        flex-wrap: wrap;
+        flex-direction: column;
+    }
+
+    .container-contact .content .page .box {
+        width: 90%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}

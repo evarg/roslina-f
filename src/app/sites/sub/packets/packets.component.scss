@@ -1,22 +1,29 @@
 .container-packets {
-    background-color: #F8F6F3;
-    height: 720px;
-    display: flex;
+    background-color: #eeae4f;
+    height: 920px;
     justify-content: center;
-    align-items: center;
-    flex: 1 1 auto;
-    flex-direction: row;
+    display: block;
+    box-sizing: border-box;
 }
 
 .container-packets .content {
-    width: 1280px;
+    background-color: #adfae7;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    max-width: 1280px;
     height: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .container-packets .widgets {
+    border-right-color: rgb(221, 221, 221);
+    border-right-style: solid;
+    border-right-width: 1px;
     //background-color: pink;
     width: 305px;
-    height: 100%;
     margin-top: 64px;
     margin-bottom: 30px;
 }
@@ -29,7 +36,6 @@
     margin-bottom: 30px;
     //background-color: yellow;
     width: 915px;
-    height: 100%;
 }
 
 

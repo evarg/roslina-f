@@ -2,3 +2,26 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+:root{
+    --main-color: red;
+    --alt-color: blue;
+
+    --main-color-1: #2f2504;
+    --main-color-2: #594e36;
+    --main-color-3: #7e846b;
+    --main-color-4: #ea8c55;
+    --main-color-5: #4381c1;
+
+    --back-color-1: #f8f6f3;
+    --back-color-0: #ffffff;
+    //--back-color-1: red;
+
+    --text-color-1: rgb(17, 17, 17);
+    --text-color-2: #111111;
+    --text-color-3: #333333;
+    --text-color-4: #7e846b;
+
+    --border-color-1: rgba(122, 122, 122, 0.25);
+
+}
