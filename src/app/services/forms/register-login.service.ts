@@ -41,8 +41,8 @@ export class RegisterLoginService {
         return this.formBuilder.group({
             [RegisterFCN.NAME]: ["", [Validators.required]],
             [RegisterFCN.EMAIL]: ["", [Validators.required, Validators.email]],
-            [RegisterFCN.PASSWORD]: ["", [Validators.required]],
-            [RegisterFCN.PASSWORD_CONFIRM]: ["", [Validators.required]],
+            [RegisterFCN.PASSWORD]: ["", [Validators.required, Validators.minLength(4)]],
+            [RegisterFCN.PASSWORD_CONFIRM]: ["", [Validators.required, Validators.minLength(4)]],
         }, {
             validator: ConfirmedValidator(RegisterFCN.PASSWORD, RegisterFCN.PASSWORD_CONFIRM)
           });

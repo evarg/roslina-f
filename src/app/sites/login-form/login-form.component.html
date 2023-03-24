@@ -1,31 +1,55 @@
 <div class="container-login">
     <div class="container-login-content">
 
-        <h1>Logowanie</h1>
+        <div class="container-login-content-close">
+            <a [routerLink]="['']" class="nav-logo-link">
+                <mat-icon>close</mat-icon>
+            </a>
+        </div>
 
-        <form [formGroup]="loginForm" #b="ngForm" class="form-horizontal">
+        <div>
+            <a [routerLink]="['']" class="nav-logo-link">
+                <img src="assets/roslina-logo.png">
+            </a>
+        </div>
+
+        <div class="container-login-content-header">
+            Zaloguj się na swoje konto
+        </div>
+
+        <form [formGroup]="loginForm" #b="ngForm">
+            <div class="container-login-content-error">
+                <mat-error *ngIf="invalidCredencials">Podałeś błędne dane</mat-error>
+            </div>
             <div>
                 <mat-form-field class="form-login-email">
                     <mat-label>Email</mat-label>
-                    <input matInput formControlName="{{LoginFCN.EMAIL}}" />
-                    <mat-error *ngIf="loginForm.get(LoginFCN.EMAIL)?.invalid">Błąd</mat-error>
+                    <input  matInput formControlName="{{LoginFCN.EMAIL}}" />
+                    <mat-error *ngIf="loginForm.get(LoginFCN.EMAIL)?.hasError('required')">To pole jest wymagane</mat-error>
+                    <mat-error *ngIf="loginForm.get(LoginFCN.EMAIL)?.hasError('minlength')">Nazwa użytkownika musi mieć przynajmniej 2 znaki</mat-error>
+                    <mat-error *ngIf="loginForm.get(LoginFCN.EMAIL)?.hasError('email')">To nie jest poprawny adres email</mat-error>
                 </mat-form-field>
             </div>
             <div>
                 <mat-form-field class="form-login-password">
                     <mat-label>Hasło</mat-label>
-                    <input matInput formControlName="{{LoginFCN.PASSWORD}}" />
-                    <mat-error *ngIf="loginForm.get(LoginFCN.PASSWORD)?.invalid">Błąd</mat-error>
+                    <input type="password" matInput formControlName="{{LoginFCN.PASSWORD}}" />
+                    <mat-error *ngIf="loginForm.get(LoginFCN.PASSWORD)?.hasError('minlength')">Hasło musi mieć przynajmniej 4 znaki</mat-error>
                 </mat-form-field>
             </div>
-            <div>
-                <mat-error *ngIf="invalidCredencials">Błąd logowania</mat-error>
-                <br>
+            <div class="container-login-content-forgot">
+                <a [routerLink]="['/forgot-password']" class="nav-logo-link">
+                    Zapomniałeś hasła?
+                </a>
             </div>
-            <div>
-                <button mat-stroked-button (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
-                &nbsp;
-                <button mat-stroked-button (click)="onCancel()">Anuluj</button>
+            <div class="container-login-content-submit">
+                <button mat-stroked-button (click)="onLogin()" [disabled]="loginForm.invalid"
+                    class="login-submit">Zaloguj</button>
+            </div>
+            <div class="container-login-content-register">
+                Nie masz konta?
+                <a [routerLink]="['/register']" class="nav-logo-link">
+                    załóż konto </a>
             </div>
         </form>
     </div>

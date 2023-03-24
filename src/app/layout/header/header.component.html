@@ -32,18 +32,24 @@
                 </button>
             </li>
 
-            <ng-container *ngIf="loggedIn">
-                <li>
-                    <button mat-icon-button class="" aria-label="" [routerLink]="['/sub/login']">
-                        <mat-icon>account_circle</mat-icon>
-                    </button>
-                </li>
-            </ng-container>
+                        <ng-container *ngIf="loggedIn">
+                            <li>
+                                <button mat-icon-button  [matMenuTriggerFor]="userMenu">
+                                    <mat-icon>account_circle</mat-icon>
+                                </button>
+                                <mat-menu #userMenu="matMenu">
+                                    <button mat-menu-item>Profil</button>
+                                    <button mat-menu-item (click)="onLogout()">Wyloguj</button>
+                                </mat-menu>
+                            </li>
+                        </ng-container>
 
-            <ng-container *ngIf="loggedIn">
-                <li><a class="nav-bar-button">Rejestracja</a></li>
-                <li><a class="nav-bar-button">Logowanie</a></li>
-            </ng-container>
+                        <ng-container *ngIf="!loggedIn">
+                            <ul>
+                                <li><a class="nav-bar-button" [routerLink]="['/register']">Rejestracja</a></li>
+                                <li><a class="nav-bar-button" [routerLink]="['/login']">Logowanie</a></li>
+                            </ul>
+                        </ng-container>
         </ul>
     </div>
 

@@ -1,22 +1,65 @@
 .container-login {
+    box-sizing: border-box;
     background-color: var(--back-color-ad);
     display: flex;
     flex-direction: column;
     height: 100%;
-    padding-bottom: 50px;
+    //padding-bottom: 50px;
 }
 
 .container-login-content {
+    box-sizing: border-box;
     background-color: var(--back-color-ad);
-    //background-color: red;
+    //height: 300px;
+    background-color: white;
     max-width: 1280px;
-    width: 100%;
+    width: 360px;
     margin: auto;
     //margin-right: auto;
     display: flex;
-    align-items: center;
     flex-direction: column;
+    align-items: center;
+    align-content: center;
+    flex-direction: column;
+    padding: 30px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgba(0, 0, 0, 0.12);
+    border-radius: 8px;
 }
+
+.container-login-content-close {
+    width: 100%;
+    text-align: right;
+    margin-top: -25px;
+    margin-right: -50px;
+}
+
+.container-login-content-header {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.container-login-content-forgot {
+    text-align: right;
+}
+
+.container-login-content-error {
+    text-align: center;
+    font-weight: 500;
+}
+
+.container-login-content-submit {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.container-login-content-register {
+    text-align: center;
+    padding-top: 10px;
+}
+
 
 .container-login-content h1 {
     line-height: normal;
@@ -24,8 +67,6 @@
     font-size: 54px;
     font-weight: 700;
     font-family: "Merriweather", serif;
-    margin-top: 50px;
-    margin-bottom: 40px;
 }
 
 .form-login-email {
@@ -34,4 +75,33 @@
 
 .form-login-password {
     width: 300px;
+}
+
+.login-submit {
+    width: 120px;
+    background-color: #7e846b;
+}
+
+#login-buttons {
+    text-align: center;
+}
+
+#forgot-buttons {
+    text-align: right;
+}
+
+#login-footer-forgot {
+    line-height: normal;
+    font-family: "Merriweather", serif;
+    //font-weight: 700;
+    color: black;
+    font-size: 12px;
+    //padding-top: 10px;
+}
+
+.login-footer p {
+    padding-top: 20px;
+    font-size: 16px;
+    font-family: "Open Sans", sans-serif;
+    color: black;
 }

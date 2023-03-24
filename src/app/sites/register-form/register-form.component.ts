@@ -15,6 +15,7 @@ export class RegisterFormComponent implements OnInit {
     public viewState: ViewState = ViewState.LOADING;
     public ViewState: typeof ViewState = ViewState;
     public RegisterFCN: typeof RegisterFCN = RegisterFCN;
+    public invalidCredencials = false;
 
     constructor(private formService: RegisterLoginService, public router: Router, private registerService: RegisterService) {}
 

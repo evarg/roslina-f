@@ -19,7 +19,7 @@ export class FormLoginService {
 
     public initForm(): FormGroup {
         return this.formBuilder.group({
-            [LoginFCN.EMAIL]: ["", [Validators.required, Validators.email]],
+            [LoginFCN.EMAIL]: ["", [Validators.required, Validators.email, Validators.minLength(2)]],
             [LoginFCN.PASSWORD]: ["", [Validators.required]],
         });
     }

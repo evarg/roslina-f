@@ -4,7 +4,6 @@ import { Router } from "@angular/router";
 import { ViewState } from "src/app/enums/view-state";
 import { AuthService } from "src/app/services/auth.service";
 import { FormLoginService, LoginFCN } from "src/app/services/forms/form-login.service";
-import { ProducersService } from "src/app/services/producers.service";
 
 @Component({
     selector: "app-login-form",
