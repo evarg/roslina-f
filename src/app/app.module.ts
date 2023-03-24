@@ -40,6 +40,7 @@ import { PacketsComponent } from "./sites/sub/packets/packets.component";
 import { LoginFormComponent } from "./sites/login-form/login-form.component";
 import { AuthInterceptor } from "./auth.interceptor";
 import { RegisterFormComponent } from './sites/register-form/register-form.component';
+import { ForgotPasswordFormComponent } from './sites/forgot-password-form/forgot-password-form.component';
 
 export const DATE_FORMATS = {
     parse: {
@@ -84,6 +85,7 @@ export const DATE_FORMATS = {
         PacketsComponent,
         LoginFormComponent,
         RegisterFormComponent,
+        ForgotPasswordFormComponent,
     ],
     imports: [
         BrowserModule,

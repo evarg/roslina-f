@@ -26,7 +26,6 @@ export class LoginFormComponent implements OnInit {
         if(this.authService.loggedIn())
             this.router.navigate([""]);
 
-
         this.loginForm = this.formService.initForm();
         this.getScreenWidth = window.innerWidth;
         this.getScreenHeight = window.innerHeight;
@@ -36,7 +35,7 @@ export class LoginFormComponent implements OnInit {
         this.authService.loginToAPI(this.formService.prepareCredencialsFromFormData(this.loginForm)).subscribe({
             next: (data) => {
                 this.authService.setLogin(data.access_token);
-                window.location.reload();
+                this.router.navigate([""]);
             },
             error: (err) => {
                 this.invalidCredencials = true;
