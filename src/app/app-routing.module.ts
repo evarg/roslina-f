@@ -18,6 +18,8 @@ import { MainPageComponent } from "./layout/main-page/main-page.component";
 import { SubPageComponent } from "./layout/sub-page/sub-page.component";
 import { ContactComponent } from "./sites/sub/contact/contact.component";
 import { PacketsComponent } from "./sites/sub/packets/packets.component";
+import { LoginFormComponent } from "./sites/login-form/login-form.component";
+import { RegisterFormComponent } from "./sites/register-form/register-form.component";
 
 const routes: Routes = [
     { path: "", component: MainPageComponent },
@@ -35,7 +37,8 @@ const routes: Routes = [
             { path: "delete/:id", component: ProducersDeleteComponent },
         ],
     },
-
+    { path: "login", component: LoginFormComponent },
+    { path: "register", component: RegisterFormComponent },
     {
         path: "producers",
         children: [

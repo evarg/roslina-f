@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -34,7 +34,16 @@ export class ProducersService {
     }
 
     get(id: number): Observable<Producer> {
-        return this.http.get<Producer>(environment.apiUrl + "producers/" + id);
+        const auth_token =
+            "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vcm9zbGluYS1iLnBvbGlnb24vYXBpL2xvZ2luIiwiaWF0IjoxNjc5NDk3NjY3LCJleHAiOjE2Nzk1MDEyNjcsIm5iZiI6MTY3OTQ5NzY2NywianRpIjoiWUJMTWwwWHdsSVRRRzhLRCIsInN1YiI6IjEiLCJwcnYiOiIyM2JkNWM4OTQ5ZjYwMGFkYjM5ZTcwMWM0MDA4NzJkYjdhNTk3NmY3In0.a5Ndbnw07ZwBzrAUYfzAQpLMjx-QRuNT4Ns2OTMnl5I";
+        const opt = {
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${auth_token}`,
+            },
+        };
+        //          return this.http.get<Producer>(environment.apiUrl + "producers/" + id, { headers: headers });
+        return this.http.get<Producer>(environment.apiUrl + "producers/" + id, opt);
     }
 
     delete(id: number): Observable<any> {

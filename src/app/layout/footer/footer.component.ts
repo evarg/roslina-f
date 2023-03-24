@@ -9,6 +9,10 @@ export class FooterComponent implements OnInit {
 
   constructor() { }
 
+    onClick(){
+
+    }
+
   ngOnInit(): void {
   }
 

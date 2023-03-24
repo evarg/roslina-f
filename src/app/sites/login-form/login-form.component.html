@@ -1,0 +1,32 @@
+<div class="container-login">
+    <div class="container-login-content">
+
+        <h1>Logowanie</h1>
+
+        <form [formGroup]="loginForm" #b="ngForm" class="form-horizontal">
+            <div>
+                <mat-form-field class="form-login-email">
+                    <mat-label>Email</mat-label>
+                    <input matInput formControlName="{{LoginFCN.EMAIL}}" />
+                    <mat-error *ngIf="loginForm.get(LoginFCN.EMAIL)?.invalid">Błąd</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field class="form-login-password">
+                    <mat-label>Hasło</mat-label>
+                    <input matInput formControlName="{{LoginFCN.PASSWORD}}" />
+                    <mat-error *ngIf="loginForm.get(LoginFCN.PASSWORD)?.invalid">Błąd</mat-error>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-error *ngIf="invalidCredencials">Błąd logowania</mat-error>
+                <br>
+            </div>
+            <div>
+                <button mat-stroked-button (click)="onLogin()" [disabled]="loginForm.invalid">Login</button>
+                &nbsp;
+                <button mat-stroked-button (click)="onCancel()">Anuluj</button>
+            </div>
+        </form>
+    </div>
+</div>

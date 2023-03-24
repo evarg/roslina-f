@@ -34,6 +34,7 @@ export class ProducersViewComponent implements OnInit {
     this.producersService.get(this.producerID).subscribe({
       next: (data) => {
         this.producer = data;
+        console.log(data)
         this.changeViewState(ViewState.LOAD_SUCCESS);
       },
       error: (err) => {

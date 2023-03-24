@@ -15,7 +15,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
     --back-color-1: #f8f6f3;
     --back-color-0: #ffffff;
-    //--back-color-1: red;
+
+    --back-color-header: #7e846b;
+    --back-color-header: #ffffff;
+    --back-color-header-2: #7e846b;
+
+    --back-color-footer: #001524;
 
     --text-color-1: rgb(17, 17, 17);
     --text-color-2: #111111;
@@ -24,4 +29,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
     --border-color-1: rgba(122, 122, 122, 0.25);
 
+    --back-color-ad: #f8f6f3;
+    --back-color-ad4: #111111;
+
+    --mobile-break-point: 800px;
 }

@@ -1,0 +1,37 @@
+.container-login {
+    background-color: var(--back-color-ad);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding-bottom: 50px;
+}
+
+.container-login-content {
+    background-color: var(--back-color-ad);
+    //background-color: red;
+    max-width: 1280px;
+    width: 100%;
+    margin: auto;
+    //margin-right: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.container-login-content h1 {
+    line-height: normal;
+    color: rgb(17, 17, 17);
+    font-size: 54px;
+    font-weight: 700;
+    font-family: "Merriweather", serif;
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
+.form-login-email {
+    width: 300px;
+}
+
+.form-login-password {
+    width: 300px;
+}
