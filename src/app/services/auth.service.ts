@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { ForgotPasswordsCredencials } from "./forms/forgot-password.service";
+import { ResetCredencials } from "./forms/reset-password.service";
 
 export interface LoginCredencials {
     email: string;
@@ -31,6 +33,17 @@ export class AuthService {
 
     loginToAPI(data: LoginCredencials): Observable<any> {
         return this.http.post(environment.apiUrl + "login", data);
+    }
+
+    resetPassword(data: ResetCredencials): Observable<any> {
+        return this.http.post(environment.apiUrl + "reset_password", data);
+    }
+
+    forgotPassword(data: ForgotPasswordsCredencials): Observable<any> {
+        let url = environment.apiUrl + 'reset_password?email=' + data.email
+        url += '&url=' + environment.apiUrl + 'reset-password/:token/:email'
+        console.warn(url)
+        return this.http.get(url);
     }
 
     setLogin(token: string) {

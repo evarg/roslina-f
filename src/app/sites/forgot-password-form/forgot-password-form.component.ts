@@ -23,6 +23,10 @@ export class ForgotPasswordFormComponent implements OnInit {
 
     constructor(private formService: ForgotPasswordService, public router: Router, private authService: AuthService) {}
 
+    public changeViewState(viewState: ViewState) {
+        this.viewState = viewState;
+    }
+
     ngOnInit(): void {
         if(this.authService.loggedIn())
             this.router.navigate([""]);
@@ -30,17 +34,16 @@ export class ForgotPasswordFormComponent implements OnInit {
         this.forgotPasswordForm = this.formService.initForm();
     }
 
-    onLogin(): void {
-        // this.authService.loginToAPI(this.formService.prepareCredencialsFromFormData(this.forgotPasswordForm)).subscribe({
-        //     next: (data) => {
-        //         this.authService.setLogin(data.access_token);
-        //         this.router.navigate([""]);
-        //     },
-        //     error: (err) => {
-        //         this.invalidCredencials = true;
-        //         console.error(err);
-        //     },
-        // });
+    onForget(): void {
+        this.authService.forgotPassword(this.formService.prepareCredencialsFromFormData(this.forgotPasswordForm)).subscribe({
+             next: (data) => {
+                this.changeViewState(ViewState.SAVE_SUCCESS);
+             },
+             error: (err) => {
+                this.changeViewState(ViewState.SAVE_SUCCESS);
+                 console.error(err);
+             },
+         });
     }
 
     onCancel(): void {

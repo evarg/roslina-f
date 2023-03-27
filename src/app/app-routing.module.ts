@@ -21,6 +21,7 @@ import { PacketsComponent } from "./sites/sub/packets/packets.component";
 import { LoginFormComponent } from "./sites/login-form/login-form.component";
 import { RegisterFormComponent } from "./sites/register-form/register-form.component";
 import { ForgotPasswordFormComponent } from "./sites/forgot-password-form/forgot-password-form.component";
+import { ResetPasswordFormComponent } from "./sites/reset-password-form/reset-password-form.component";
 
 const routes: Routes = [
     { path: "", component: MainPageComponent },
@@ -41,6 +42,7 @@ const routes: Routes = [
     { path: "login", component: LoginFormComponent },
     { path: "register", component: RegisterFormComponent },
     { path: "forgot-password", component: ForgotPasswordFormComponent },
+    { path: "reset-password/:token/:email", component: ResetPasswordFormComponent },
     {
         path: "producers",
         children: [
