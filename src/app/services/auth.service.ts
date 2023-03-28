@@ -41,7 +41,7 @@ export class AuthService {
 
     forgotPassword(data: ForgotPasswordsCredencials): Observable<any> {
         let url = environment.apiUrl + 'reset_password?email=' + data.email
-        url += '&url=' + environment.apiUrl + 'reset-password/:token/:email'
+        url += '&url=' + environment.baseUrl + 'reset-password/:token/:email'
         console.warn(url)
         return this.http.get(url);
     }

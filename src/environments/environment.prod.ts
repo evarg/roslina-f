@@ -2,6 +2,7 @@ export const environment = {
   production: true,
 
   apiUrl: 'http://api.roslina.com.pl/api/',
-  apiUrlImages: 'http://api.roslina.com.pl/'
+  apiUrlImages: 'http://api.roslina.com.pl/',
+  baseUrl: 'http://roslina.com.pl/'
 
 };

@@ -24,6 +24,11 @@ import { ForgotPasswordFormComponent } from "./sites/forgot-password-form/forgot
 import { ResetPasswordFormComponent } from "./sites/reset-password-form/reset-password-form.component";
 
 const routes: Routes = [
+    { path: "login", component: LoginFormComponent },
+    { path: "register", component: RegisterFormComponent },
+    { path: "forgot-password", component: ForgotPasswordFormComponent },
+    { path: "reset-password/:token/:email", component: ResetPasswordFormComponent },
+
     { path: "", component: MainPageComponent },
     {
         path: "sub",
@@ -39,10 +44,6 @@ const routes: Routes = [
             { path: "delete/:id", component: ProducersDeleteComponent },
         ],
     },
-    { path: "login", component: LoginFormComponent },
-    { path: "register", component: RegisterFormComponent },
-    { path: "forgot-password", component: ForgotPasswordFormComponent },
-    { path: "reset-password/:token/:email", component: ResetPasswordFormComponent },
     {
         path: "producers",
         children: [

@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   apiUrl: 'http://roslina-b.poligon/api/',
-  apiUrlImages: 'http://roslina-b.poligon/'
+  apiUrlImages: 'http://roslina-b.poligon/',
+  baseUrl: 'http://localhost:4200/'
 };
 
 /*
