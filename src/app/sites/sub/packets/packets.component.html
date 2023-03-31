@@ -1,5 +1,7 @@
 <div class="packet-list">
     <div class="packet-list-wrapper">
+
+
         <div class="packet-list-left">
             <div class="packet-list-form">
                 <form [formGroup]="searchPacketForm" #b="ngForm" class="form-horizontal">
@@ -18,11 +20,12 @@
         </div>
         <div class="packet-list-right">
             <h1>Lista pakietów</h1>
+            <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
             <div class="packet-list-viewer">
-                <div class="packet-box">
+                <div class="packet-box" *ngFor="let packet of this.dataSource._renderData._value">
                     <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
+                    <h2>{{packet.name}}</h2>
+                    <h3>gatunek</h3>
                     <p> <mat-icon>star</mat-icon>
                         <mat-icon>star</mat-icon>
                         <mat-icon>star</mat-icon>
@@ -30,86 +33,6 @@
                         <mat-icon>star_outline</mat-icon>
                     </p>
                 </div>
-                <div class="packet-box">
-                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
-                    <p> <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                    </p>
-                </div>
-                <div class="packet-box">
-                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
-                    <p> <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                    </p>
-                </div>
-                <div class="packet-box">
-                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
-                    <p> <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                    </p>
-                </div>
-                <div class="packet-box">
-                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
-                    <p> <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                    </p>
-                </div>
-                <div class="packet-box">
-                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
-                    <p> <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                    </p>
-                </div>
-                <div class="packet-box">
-                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
-                    <p> <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                    </p>
-                </div>
-                <div class="packet-box">
-                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
-                    <h2>Dwa</h2>
-                    <h3>Deskrypcja</h3>
-                    <p> <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                        <mat-icon>star_outline</mat-icon>
-                    </p>
-                </div>
-
-
-
 
                 <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
                 <br><br><br><br><br><br><br>

@@ -23,6 +23,7 @@ import { RegisterFormComponent } from "./sites/register-form/register-form.compo
 import { ForgotPasswordFormComponent } from "./sites/forgot-password-form/forgot-password-form.component";
 import { ResetPasswordFormComponent } from "./sites/reset-password-form/reset-password-form.component";
 import { PacketsAddComponent } from "./sites/packets-add/packets-add.component";
+import { ProfileComponent } from "./sites/profile/profile.component";
 
 const routes: Routes = [
     { path: "login", component: LoginFormComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
         path: "sub",
         component: SubPageComponent,
         children: [
+            { path: "profile", component: ProfileComponent },
             { path: "packet-add", component: PacketsAddComponent },
             { path: "contact", component: ContactComponent },
             { path: "packets", component: PacketsComponent },

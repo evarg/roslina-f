@@ -1,0 +1,67 @@
+<div class="packet-list">
+    <div class="packet-list-wrapper">
+
+        <div class="packet-list-right">
+            <h1>Profil użytkownika</h1>
+
+            <div class="packet-list-form">
+                <form [formGroup]="profileForm" #b="ngForm">
+                    <div class="message-container">
+                        <ng-container *ngIf="viewState === ViewState.LOAD_ERROR"> <span class="errorr">Błąd pobierania danych
+                            użytkownika</span></ng-container>
+                        <ng-container *ngIf="viewState === ViewState.SAVE_ERROR"> <span class="errorr">{{ errorMessage }}</span></ng-container>
+                        <ng-container *ngIf="viewState === ViewState.SAVE_SUCCESS"> <span class="success">Poprawnie zapisano dane
+                            użytkownika</span></ng-container>
+                    </div>
+                    <div>
+                        <mat-form-field class="form-login-email" style="width: 100%;">
+                            <mat-label>Nazwa wyświetlana</mat-label>
+                            <input matInput formControlName="{{ProfileFCN.NAME}}" />
+                            <mat-error *ngIf="profileForm.get(ProfileFCN.NAME)?.hasError('required')">To pole jest
+                                wymagane</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="form-login-password" style="width: 100%;">
+                            <mat-label>Aktualne hasło</mat-label>
+                            <input type="password" matInput formControlName="{{ProfileFCN.OLD_PASSWORD}}" />
+                            <mat-error *ngIf="profileForm.get(ProfileFCN.OLD_PASSWORD)?.hasError('required')">To pole jest
+                                wymagane</mat-error>
+                            <mat-error *ngIf="profileForm.get(ProfileFCN.OLD_PASSWORD)?.hasError('minlength')">Hasło musi
+                                mieć min. 4 znaki</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="form-login-password" style="width: 100%;">
+                            <mat-label>Hasło</mat-label>
+                            <input type="password" matInput formControlName="{{ProfileFCN.PASSWORD}}" />
+                            <mat-error *ngIf="profileForm.get(ProfileFCN.PASSWORD)?.hasError('required')">To pole jest
+                                wymagane</mat-error>
+                            <mat-error *ngIf="profileForm.get(ProfileFCN.PASSWORD)?.hasError('minlength')">Hasło musi
+                                mieć min. 4 znaki</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="form-login-password" style="width: 100%;">
+                            <mat-label>Powtórz hasło</mat-label>
+                            <input type="password" matInput formControlName="{{ProfileFCN.PASSWORD_CONFIRM}}" />
+                            <mat-error *ngIf="profileForm.get(ProfileFCN.PASSWORD_CONFIRM)?.hasError('required')">To
+                                pole jest wymagane</mat-error>
+                            <mat-error *ngIf="profileForm.get(ProfileFCN.PASSWORD_CONFIRM)?.hasError('minlength')">Hasło
+                                musi
+                                mieć min. 4 znaki</mat-error>
+                            <mat-error
+                                *ngIf="profileForm.get(ProfileFCN.PASSWORD_CONFIRM)?.hasError('confirmedValidator')">Hasła
+                                nie są identyczne</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="container-login-content-submit">
+                        <button mat-stroked-button (click)="onSave()" [disabled]="profileForm.invalid"
+                            class="login-submit">Zapisz</button>
+                        <button mat-stroked-button (click)="onBack()" class="login-submit">Zapissadfz</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

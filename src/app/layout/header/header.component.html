@@ -16,9 +16,7 @@
     <div class="header-mobile-menu" *ngIf="z1">
         <ul>
             <li><a [routerLink]="['/sub/packets']" class="nav-bar-button">Nasiona</a></li>
-            <li><a class="nav-bar-button">Nasiona</a></li>
-            <li><a class="nav-bar-button">Kalendarz</a></li>
-            <li><a class="nav-bar-button">About</a></li>
+            <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
 
             <li>
                 <button mat-icon-button class="" aria-label="">
@@ -35,15 +33,13 @@
                 <mat-icon style="transform: scale(1.7);">add</mat-icon>
             </button></li>
 
-            <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
-
             <ng-container *ngIf="loggedIn">
                 <li>
                     <button mat-icon-button [matMenuTriggerFor]="userMenu">
                         <mat-icon>account_circle</mat-icon>
                     </button>
                     <mat-menu #userMenu="matMenu">
-                        <button mat-menu-item>Profil</button>
+                        <button mat-menu-item [routerLink]="['/sub/profile']">Profil</button>
                         <button mat-menu-item (click)="onLogout()">Wyloguj</button>
                     </mat-menu>
                 </li>
@@ -69,8 +65,7 @@
                 <div class="nav-left">
                     <ul>
                         <li><a [routerLink]="['/sub/packets']" class="nav-bar-button">Nasiona</a></li>
-                        <li><a class="nav-bar-button">Nasiona</a></li>
-                        <li><a class="nav-bar-button">Kalendarz</a></li>
+                        <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
                     </ul>
                 </div>
                 <span class="spacer"></span>
@@ -84,14 +79,13 @@
                                 <mat-icon>share</mat-icon>
                             </button>
                         </li>
-                        <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
                         <ng-container *ngIf="loggedIn">
                             <li>
                                 <button mat-icon-button [matMenuTriggerFor]="userMenu">
                                     <mat-icon>account_circle</mat-icon>
                                 </button>
                                 <mat-menu #userMenu="matMenu">
-                                    <button mat-menu-item>Profil</button>
+                                    <button mat-menu-item [routerLink]="['/sub/profile']">Profil</button>
                                     <button mat-menu-item (click)="onLogout()">Wyloguj</button>
                                 </mat-menu>
                             </li>

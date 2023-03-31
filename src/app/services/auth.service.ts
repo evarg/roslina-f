@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
 import { ForgotPasswordsCredencials } from "./forms/forgot-password.service";
+import { UserData } from "./forms/form-login.service";
 import { ResetCredencials } from "./forms/reset-password.service";
 
 export interface LoginCredencials {
@@ -33,6 +34,10 @@ export class AuthService {
 
     loginToAPI(data: LoginCredencials): Observable<any> {
         return this.http.post(environment.apiUrl + "login", data);
+    }
+
+    me(): Observable<UserData> {
+        return this.http.post<UserData>(environment.apiUrl + "me", []);
     }
 
     resetPassword(data: ResetCredencials): Observable<any> {
