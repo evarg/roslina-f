@@ -1,68 +1,111 @@
-.container-packets {
-    background-color: #eeae4f;
-    height: 920px;
-    justify-content: center;
-    display: block;
-    box-sizing: border-box;
+.packet-list {
+    width: 100%;
+    background-color: var(--back-color-1);
+    //    background-color: red;
+    //padding-bottom: 250px;
 }
 
-.container-packets .content {
-    background-color: #adfae7;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
+.packet-list-wrapper {
+    width: 100%;
     max-width: 1280px;
-    height: 100%;
+    background-color: var(--back-color-1);
+    //    background-color: lightcoral;
     margin-left: auto;
     margin-right: auto;
+    display: flex;
+    flex-direction: row;
+}
+.packet-list-left {
+    box-sizing: border-box;
+    //background-color: yellowgreen;
+    width: 30%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    border-right: 1px solid rgb(221, 221, 221);
+    align-items: center;
+    //padding-left: 20px;
 }
 
-.container-packets .widgets {
-    border-right-color: rgb(221, 221, 221);
-    border-right-style: solid;
-    border-right-width: 1px;
-    //background-color: pink;
-    width: 305px;
-    margin-top: 64px;
-    margin-bottom: 30px;
+.packet-list-right {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    //background-color: darkorange;
+    width: 100%;
 }
 
-.container-packets .list {
-    border-left-color: rgb(221, 221, 221);
-    border-left-style: solid;
-    border-left-width: 1px;
-    margin-top: 64px;
-    margin-bottom: 30px;
-    //background-color: yellow;
-    width: 915px;
+.packet-list-form {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    //background-color: darkorange;
+    width: 100%;
 }
 
+.packet-list-right h1 {
+    line-height: normal;
+    color: rgb(139, 195, 74);
+    font-size: 42px;
+    font-weight: 700;
+    font-family: "Merriweather", serif;
+    padding-left: 20px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
 
-.container-packets .packets-box h1 {
-    font-size: 22px;
-    text-align: center;
-    color: #333333;
+.success {
+    color: green;
+}
+
+.packet-list-viewer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.packet-box {
+    //background-color: darkorange;
+    width: 260px;
+    height: 380px;
+    margin: 20px 20px;
+    margin-right: 20px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.packet-box .box4-box {
+    width: 310px;
+    height: 410px;
+    align-content: center;
+    padding-top: 20px;
+    border-radius: 8px;
+}
+
+.container-ad4-content-box {
+    background-color: #303030;
+    width: 25%;
+    max-width: 300px;
+    height: 110px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-left: 30px;
+    padding-top: 20px;
+    border-radius: 8px;
+    color: white;
+}
+
+.container-ad4-content-box h1 {
+    line-height: normal;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: "Merriweather", serif;
+}
+
+.packet-box h2 {
+    line-height: normal;
+    font-size: 16px;
+    //color: white;
     font-weight: 700;
     font-family: "Open Sans", sans-serif;
-}
-
-.container-packets .packets-box h2 {
-    font-size: 20px;
-    text-align: center;
-    color: #111111;
-    font-weight: 700;
     margin-top: 0px;
-    font-family: "Merriweather", serif;
 }
-
-.container-packets .packets-box h3 {
-    font-size: 136px;
-    text-align: center;
-    color: #111111;
-    font-weight: 700;
-    margin-top: 0px;
-    margin-right: 22px;
-    font-family: "Merriweather", serif;
-}
-

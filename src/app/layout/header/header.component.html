@@ -19,7 +19,6 @@
             <li><a class="nav-bar-button">Nasiona</a></li>
             <li><a class="nav-bar-button">Kalendarz</a></li>
             <li><a class="nav-bar-button">About</a></li>
-            <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
 
             <li>
                 <button mat-icon-button class="" aria-label="">
@@ -32,24 +31,30 @@
                 </button>
             </li>
 
-                        <ng-container *ngIf="loggedIn">
-                            <li>
-                                <button mat-icon-button  [matMenuTriggerFor]="userMenu">
-                                    <mat-icon>account_circle</mat-icon>
-                                </button>
-                                <mat-menu #userMenu="matMenu">
-                                    <button mat-menu-item>Profil</button>
-                                    <button mat-menu-item (click)="onLogout()">Wyloguj</button>
-                                </mat-menu>
-                            </li>
-                        </ng-container>
+            <li><button mat-icon-button class="" aria-label="" [routerLink]="['/sub/packet-add']">
+                <mat-icon style="transform: scale(1.7);">add</mat-icon>
+            </button></li>
 
-                        <ng-container *ngIf="!loggedIn">
-                            <ul>
-                                <li><a class="nav-bar-button" [routerLink]="['/register']">Rejestracja</a></li>
-                                <li><a class="nav-bar-button" [routerLink]="['/login']">Logowanie</a></li>
-                            </ul>
-                        </ng-container>
+            <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
+
+            <ng-container *ngIf="loggedIn">
+                <li>
+                    <button mat-icon-button [matMenuTriggerFor]="userMenu">
+                        <mat-icon>account_circle</mat-icon>
+                    </button>
+                    <mat-menu #userMenu="matMenu">
+                        <button mat-menu-item>Profil</button>
+                        <button mat-menu-item (click)="onLogout()">Wyloguj</button>
+                    </mat-menu>
+                </li>
+            </ng-container>
+
+            <ng-container *ngIf="!loggedIn">
+                <ul>
+                    <li><a class="nav-bar-button" [routerLink]="['/register']">Rejestracja</a></li>
+                    <li><a class="nav-bar-button" [routerLink]="['/login']">Logowanie</a></li>
+                </ul>
+            </ng-container>
         </ul>
     </div>
 
@@ -71,20 +76,18 @@
                 <span class="spacer"></span>
                 <div class="nav-right">
                     <ul>
-                        <li><a class="nav-bar-button">About</a></li>
-                        <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
-
-                        <li><button mat-icon-button class="" aria-label="">
-                                <mat-icon>favorite</mat-icon>
+                        <li><button mat-icon-button class="" aria-label="" [routerLink]="['/sub/packet-add']">
+                                <mat-icon style="transform: scale(1.7);">add</mat-icon>
                             </button></li>
                         <li>
                             <button mat-icon-button class="" aria-label="">
                                 <mat-icon>share</mat-icon>
                             </button>
                         </li>
+                        <li><a [routerLink]="['/sub/contact']" class="nav-bar-button">Kontakt</a></li>
                         <ng-container *ngIf="loggedIn">
                             <li>
-                                <button mat-icon-button  [matMenuTriggerFor]="userMenu">
+                                <button mat-icon-button [matMenuTriggerFor]="userMenu">
                                     <mat-icon>account_circle</mat-icon>
                                 </button>
                                 <mat-menu #userMenu="matMenu">

@@ -1,16 +1,118 @@
-<div class="container-packets">
-
-    <div class="container-packets content">
-
-        <div class="widgets">
-            Widgets<br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="packet-list">
+    <div class="packet-list-wrapper">
+        <div class="packet-list-left">
+            <div class="packet-list-form">
+                <form [formGroup]="searchPacketForm" #b="ngForm" class="form-horizontal">
+                    <div style="display: flex; justify-content: left;">
+                        <mat-form-field style="width: 60%;">
+                            <mat-label>Nazwa</mat-label>
+                            <input matInput formControlName="{{SearchPacketFCN.SEARCH}}" />
+                            <mat-error *ngIf="searchPacketForm.get(SearchPacketFCN.SEARCH)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                        <button mat-icon-button class="" aria-label="" [disabled]="searchPacketForm.invalid">
+                            <mat-icon style="transform: scale(1.7); padding-top: 10px">search</mat-icon>
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
+        <div class="packet-list-right">
+            <h1>Lista pakietów</h1>
+            <div class="packet-list-viewer">
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
+                <div class="packet-box">
+                    <img src="assets/ad3-3.jpg" width="260px" height="260px">
+                    <h2>Dwa</h2>
+                    <h3>Deskrypcja</h3>
+                    <p> <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                        <mat-icon>star_outline</mat-icon>
+                    </p>
+                </div>
 
-        <div class="list">
-            List
+
+
+
+                <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br>
+            </div>
         </div>
-
     </div>
-
-
-</div>

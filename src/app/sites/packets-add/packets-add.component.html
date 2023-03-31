@@ -1,0 +1,88 @@
+<div class="packet-list">
+    <div class="packet-list-wrapper">
+
+        <div class="packet-list-right">
+            <h1>Dodaj pakiet</h1>
+
+            <div class="packet-list-form">
+                <form [formGroup]="packetForm" #b="ngForm" class="form-horizontal">
+                    <div style="display: flex; flex-direction: column; align-items: center;">
+                        <mat-error *ngIf="viewState === ViewState.SAVE_SUCCESS" class="success">Porawnie dodano pakiet</mat-error>
+                        <mat-error *ngIf="viewState === ViewState.SAVE_ERROR" class="success">Podczas przetwarzania
+                            wystąpił błąd</mat-error>
+                    </div>
+                    <div>
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Nazwa</mat-label>
+                            <input matInput formControlName="{{PacketFCN.NAME}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.NAME)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <mat-form-field style="width: 100%;">
+                            <mat-label>Opis</mat-label>
+                            <textarea matInput formControlName="{{PacketFCN.DESC}}"></textarea>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.DESC)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between">
+                        <mat-form-field style="width: 49%;">
+                            <mat-label>Nazwa polska</mat-label>
+                            <input matInput formControlName="{{PacketFCN.NAME_POLISH}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.NAME_POLISH)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width: 49%;">
+                            <mat-label>Nazwa łacińska</mat-label>
+                            <input matInput formControlName="{{PacketFCN.NAME_LATIN}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.NAME_LATIN)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between">
+                        <mat-form-field style="width: 32%;">
+                            <mat-label>Producent</mat-label>
+                            <mat-select formControlName="{{PacketFCN.PRODUCER_ID}}">
+                                <mat-option *ngFor="let lP of loadedProducers" [value]="lP.id">
+                                    {{lP.name}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.PRODUCER_ID)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width: 32%;">
+                            <mat-label>Data ważności</mat-label>
+                            <input matInput [matDatepicker]="picker1" formControlName="{{PacketFCN.EXPIRATION_DATE}}">
+                            <mat-hint>YYYY-MM-DD</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                            <mat-datepicker #picker1></mat-datepicker>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.EXPIRATION_DATE)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+
+                        <mat-form-field style="width: 32%;">
+                            <mat-label>Data zakupu</mat-label>
+                            <input matInput [matDatepicker]="picker2" formControlName="{{PacketFCN.PURCHASE_DATE}}">
+                            <mat-hint>YYYY-MM-DD</mat-hint>
+                            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                            <mat-datepicker #picker2></mat-datepicker>
+                            <mat-error *ngIf="packetForm.get(PacketFCN.PURCHASE_DATE)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div style="padding-top: 40px;">
+                        <button mat-button type="button" class="btn btn-default" (click)="onSave()" mat-raised-button
+                            color="primary" [disabled]="packetForm.invalid">
+                            Zapisz
+                        </button>
+                        &nbsp;
+                        <button mat-button type="button" class="btn btn-default" (click)="onBack()" mat-raised-button>
+                            Anuluj
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
