@@ -7,7 +7,8 @@
             <div class="packet-list-form">
                 <form [formGroup]="packetForm" #b="ngForm" class="form-horizontal">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <mat-error *ngIf="viewState === ViewState.SAVE_SUCCESS" class="success">Porawnie dodano pakiet</mat-error>
+                        <mat-error *ngIf="viewState === ViewState.SAVE_SUCCESS" class="success">Porawnie dodano
+                            pakiet</mat-error>
                         <mat-error *ngIf="viewState === ViewState.SAVE_ERROR" class="success">Podczas przetwarzania
                             wystąpił błąd</mat-error>
                     </div>
@@ -68,6 +69,43 @@
                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                             <mat-datepicker #picker2></mat-datepicker>
                             <mat-error *ngIf="packetForm.get(PacketFCN.PURCHASE_DATE)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div>
+                        <br>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between; align-items: stretch; ">
+                        <input type="file" class="file-input" (change)="onFileSelectedFront($event)" #fileUploadFront>
+                        <mat-form-field style="width: 26%;">
+                            <mat-label>Widok przód</mat-label>
+                            <input matInput formControlName="{{PacketFCN.IMAGE_FRONT_NAME}}" />
+                            <button mat-icon-button matSuffix (click)="$event.preventDefault(); fileUploadFront.click()">
+                                <mat-icon>attach_file</mat-icon>
+                            </button>
+                        </mat-form-field>
+                        <mat-form-field style="width: 72%;">
+                            <mat-label>Nazwa</mat-label>
+                            <input matInput formControlName="{{PacketFCN.IMAGE_FRONT_NAME}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.IMAGE_FRONT_NAME)?.invalid">Błąd</mat-error>
+                        </mat-form-field>
+                    </div>
+
+                    <div style="display: flex; justify-content: space-between">
+                        <input type="file" class="file-input" (change)="onFileSelectedBack($event)" #fileUploadBack>
+                        <mat-form-field style="width: 26%;">
+                            <mat-label>Widok tył</mat-label>
+                            <input matInput formControlName="{{PacketFCN.IMAGE_BACK_NAME}}" />
+                            <button mat-icon-button matSuffix (click)="$event.preventDefault(); fileUploadBack.click()">
+                                <mat-icon>attach_file</mat-icon>
+                            </button>
+                        </mat-form-field>
+
+                        <mat-form-field style="width: 72%;">
+                            <mat-label>Nazwa</mat-label>
+                            <input matInput formControlName="{{PacketFCN.IMAGE_BACK_NAME}}" />
+                            <mat-error *ngIf="packetForm.get(PacketFCN.IMAGE_BACK_NAME)?.invalid">Błąd</mat-error>
                         </mat-form-field>
                     </div>
 

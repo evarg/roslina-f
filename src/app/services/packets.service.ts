@@ -19,6 +19,8 @@ export interface Packet {
     purchase_date: string;
     created_at?: string;
     updated_at?: string;
+    image_front?: File;
+    image_back?: File;
 }
 
 @Injectable({
@@ -31,7 +33,7 @@ export class PacketsService {
         return this.http.get<Packet[]>(environment.apiUrl + "packets");
     }
 
-    create(data: Packet): Observable<Packet> {
+    create(data: any): Observable<Packet> {
         return this.http.post<Packet>(environment.apiUrl + "packets", data);
     }
 

@@ -60,17 +60,17 @@ export class PacketsEditComponent implements OnInit {
     }
 
     saveAdd() {
-        this.changeViewState(ViewState.SAVE_ATTEMPT);
-        this.packetsService.create(this.formService.preparePacketFromFormData(this.packetForm)).subscribe({
-            next: (data) => {
-                this.changeViewState(ViewState.SAVE_SUCCESS);
-                this.router.navigate(["/packets/edit/" + data.id]);
-            },
-            error: (err) => {
-                console.error(err);
-                this.changeViewState(ViewState.SAVE_ERROR);
-            },
-        });
+        // this.changeViewState(ViewState.SAVE_ATTEMPT);
+        // this.packetsService.create(this.formService.preparePacketFromFormData(this.packetForm)).subscribe({
+        //     next: (data) => {
+        //         this.changeViewState(ViewState.SAVE_SUCCESS);
+        //         this.router.navigate(["/packets/edit/" + data.id]);
+        //     },
+        //     error: (err) => {
+        //         console.error(err);
+        //         this.changeViewState(ViewState.SAVE_ERROR);
+        //     },
+        // });
     }
 
     initEdit() {

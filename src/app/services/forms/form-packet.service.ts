@@ -11,6 +11,10 @@ export enum PacketFCN {
     PRODUCER_ID = "producer_id",
     EXPIRATION_DATE = "expiration_date",
     PURCHASE_DATE = "purchase_date",
+    IMAGE_FRONT = 'image_front',
+    IMAGE_FRONT_NAME = 'image_front_name',
+    IMAGE_BACK = 'image_back',
+    IMAGE_BACK_NAME = 'image_back_name',
 }
 
 @Injectable({
@@ -28,6 +32,10 @@ export class FormPacketService {
             [PacketFCN.PRODUCER_ID]: ["", [Validators.required, Validators.min(1)]],
             [PacketFCN.EXPIRATION_DATE]: ["", [Validators.required]],
             [PacketFCN.PURCHASE_DATE]: ["", [Validators.required]],
+            [PacketFCN.IMAGE_FRONT]: [""],
+            [PacketFCN.IMAGE_FRONT_NAME]: [""],
+            [PacketFCN.IMAGE_BACK]: [""],
+            [PacketFCN.IMAGE_BACK_NAME]: [""],
         });
     }
 
