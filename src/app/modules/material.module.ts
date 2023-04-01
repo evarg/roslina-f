@@ -1,9 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-import { OverlayModule } from '@angular/cdk/overlay';
-import { CdkTreeModule } from '@angular/cdk/tree';
-import { PortalModule } from '@angular/cdk/portal';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { MatButtonModule } from '@angular/material/button';
 import { MatButtonToggleModule } from '@angular/material/button-toggle';
@@ -36,7 +33,6 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatTooltipModule } from '@angular/material/tooltip';
 
 const materialModules = [
-  CdkTreeModule,
   MatAutocompleteModule,
   MatButtonModule,
   MatCardModule,
@@ -61,8 +57,6 @@ const materialModules = [
   MatFormFieldModule,
   MatButtonToggleModule,
   MatTreeModule,
-  OverlayModule,
-  PortalModule,
   MatBadgeModule,
   MatGridListModule,
   MatRadioModule,

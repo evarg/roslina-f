@@ -66,7 +66,6 @@ export class PacketsAddComponent implements OnInit {
         formData.append('expiration_date', this.packetForm.controls[PacketFCN.EXPIRATION_DATE].value.format("YYYY.MM.DD"));
         formData.append('purchase_date', this.packetForm.controls[PacketFCN.PURCHASE_DATE].value.format("YYYY.MM.DD"));
 
-
        //let formData: any = [];
 
         this.packetsService.create(formData).subscribe({

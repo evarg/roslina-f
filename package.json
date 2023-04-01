@@ -10,9 +10,8 @@
   },
   "private": true,
   "dependencies": {
-    "@angular-material-components/file-input": "^9.0.0",
+    "@angular-eslint/schematics": "^1.0.0",
     "@angular/animations": "^14.2.0",
-    "@angular/cdk": "^13.0.0",
     "@angular/common": "^14.2.0",
     "@angular/compiler": "^14.2.0",
     "@angular/core": "^14.2.0",
@@ -22,8 +21,8 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
-    "angular-material-fileupload": "^0.0.11",
     "lodash-es": "^4.17.21",
+    "moment": "^2.29.4",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
