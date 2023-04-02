@@ -41,7 +41,14 @@
                             <mat-error *ngIf="packetForm.get(PacketFCN.NAME_LATIN)?.invalid">Błąd</mat-error>
                         </mat-form-field>
                     </div>
-
+                    <div style="display: flex; justify-content: space-between">
+                        <mat-checkbox (change)="onProducerChange()" formControlName="{{PacketFCN.PRODUCER_ID_MODE}}"
+                            style="width: 32%; padding-left: 10px;">producent nieznany</mat-checkbox>
+                        <mat-checkbox (change)="onExpirationDateChange()" formControlName="{{PacketFCN.EXPIRATION_DATE_MODE}}"
+                            style="width: 32%; padding-left: 10px;">data ważności nieznana</mat-checkbox>
+                        <mat-checkbox (change)="onPurchaseDateChange()" formControlName="{{PacketFCN.PURCHASE_DATE_MODE}}"
+                            style="width: 32%; padding-left: 10px;">data zakupu nieznana</mat-checkbox>
+                    </div>
                     <div style="display: flex; justify-content: space-between">
                         <mat-form-field style="width: 32%;">
                             <mat-label>Producent</mat-label>
@@ -56,7 +63,7 @@
                         <mat-form-field style="width: 32%;">
                             <mat-label>Data ważności</mat-label>
                             <input matInput [matDatepicker]="picker1" formControlName="{{PacketFCN.EXPIRATION_DATE}}">
-                            <mat-hint>YYYY-MM-DD</mat-hint>
+                            <mat-hint>YYYY.MM.DD</mat-hint>
                             <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
                             <mat-datepicker #picker1></mat-datepicker>
                             <mat-error *ngIf="packetForm.get(PacketFCN.EXPIRATION_DATE)?.invalid">Błąd</mat-error>
@@ -65,7 +72,7 @@
                         <mat-form-field style="width: 32%;">
                             <mat-label>Data zakupu</mat-label>
                             <input matInput [matDatepicker]="picker2" formControlName="{{PacketFCN.PURCHASE_DATE}}">
-                            <mat-hint>YYYY-MM-DD</mat-hint>
+                            <mat-hint>YYYY.MM.DD</mat-hint>
                             <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
                             <mat-datepicker #picker2></mat-datepicker>
                             <mat-error *ngIf="packetForm.get(PacketFCN.PURCHASE_DATE)?.invalid">Błąd</mat-error>
@@ -81,7 +88,8 @@
                         <mat-form-field style="width: 26%;">
                             <mat-label>Widok przód</mat-label>
                             <input matInput formControlName="{{PacketFCN.IMAGE_FRONT_NAME}}" />
-                            <button mat-icon-button matSuffix (click)="$event.preventDefault(); fileUploadFront.click()">
+                            <button mat-icon-button matSuffix
+                                (click)="$event.preventDefault(); fileUploadFront.click()">
                                 <mat-icon>attach_file</mat-icon>
                             </button>
                         </mat-form-field>

@@ -13,7 +13,7 @@ import { FileUploadService } from "src/app/services/upload-file.service";
     templateUrl: "./upload-file.component.html",
     styleUrls: ["./upload-file.component.scss"],
 })
-export class UploadFileComponent {
+export class UploadFileComponent implements OnInit{
     public producerID: number = 0;
     public fileForm: FormGroup;
     public producerTitle: string = "";

@@ -40,35 +40,26 @@ export class PacketsAddComponent implements OnInit {
 
     onBack(): void {
         this.viewState = ViewState.CLOSE;
-        //this.router.navigate(["/"]);
-        console.log(this.imageFront);
-        console.log(this.imageBack);
+        // this.formService.prepareAPIFormData().forEach((key,value)=>{
+        //     console.log(value + '= ' + key)})
+        this.router.navigate(["/"]);
+    }
+
+    onProducerChange(): void {
+        this.formService.setProducerMode(!this.packetForm.controls[PacketFCN.PRODUCER_ID_MODE].value);
+    }
+
+    onExpirationDateChange(): void {
+        this.formService.setExpirationDateMode(!this.packetForm.controls[PacketFCN.EXPIRATION_DATE_MODE].value);
+    }
+
+    onPurchaseDateChange(): void {
+        this.formService.setPurchaseDateMode(!this.packetForm.controls[PacketFCN.PURCHASE_DATE_MODE].value);
     }
 
     onSave() {
         this.viewState = ViewState.SAVE_ATTEMPT;
-        let credencials = this.formService.preparePacketFromFormData(this.packetForm)
-
-        let clientheaders = new HttpHeaders({
-            'Content-Type': 'multipart/form-data',
-            'Accept': 'application/json',
-            'Access-Control-Allow-Origin': '*',
-          });
-
-        const formData = new FormData();
-        formData.append('image_front', this.imageFront);
-        formData.append('image_back', this.imageBack);
-        formData.append('name', this.packetForm.controls[PacketFCN.NAME].value);
-        formData.append('desc', this.packetForm.controls[PacketFCN.DESC].value);
-        formData.append('name_polish', this.packetForm.controls[PacketFCN.NAME_POLISH].value);
-        formData.append('name_latin', this.packetForm.controls[PacketFCN.NAME_LATIN].value);
-        formData.append('producer_id', this.packetForm.controls[PacketFCN.PRODUCER_ID].value);
-        formData.append('expiration_date', this.packetForm.controls[PacketFCN.EXPIRATION_DATE].value.format("YYYY.MM.DD"));
-        formData.append('purchase_date', this.packetForm.controls[PacketFCN.PURCHASE_DATE].value.format("YYYY.MM.DD"));
-
-       //let formData: any = [];
-
-        this.packetsService.create(formData).subscribe({
+        this.packetsService.create(this.formService.prepareAPIFormData()).subscribe({
             next: (data) => {
                 this.viewState = ViewState.SAVE_SUCCESS;
                 //this.router.navigate(["/packets/edit/" + data.id]);

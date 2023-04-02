@@ -1,15 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
 @Component({
-  selector: 'app-container-ad4',
-  templateUrl: './container-ad4.component.html',
-  styleUrls: ['./container-ad4.component.scss']
+    selector: "app-container-ad4",
+    templateUrl: "./container-ad4.component.html",
+    styleUrls: ["./container-ad4.component.scss"],
 })
 export class ContainerAD4Component implements OnInit {
+    constructor() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+    ngOnInit(): void {
+        // do nothing
+    }
 }
